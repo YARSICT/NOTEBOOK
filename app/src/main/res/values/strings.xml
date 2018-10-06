@@ -6,4 +6,9 @@
     <string name="nav_header_subtitle">aueUI的记事本</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="more">更多</string>
+    <string name="settings">设置</string>
+    <string name="about">关于</string>
+    <string name="opensource_license">开放源代码许可</string>
+
 </resources>
