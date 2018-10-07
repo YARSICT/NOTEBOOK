@@ -9,6 +9,7 @@
     <string name="more">更多</string>
     <string name="settings">设置</string>
     <string name="about">关于</string>
-    <string name="opensource_license">开放源代码许可</string>
+    <string name="opensource_license">开源许可</string>
+    <string name="source">项目源码</string>
 
 </resources>

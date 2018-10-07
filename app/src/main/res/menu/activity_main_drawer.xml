@@ -9,6 +9,10 @@
             android:id="@+id/nav_license"
             android:icon="@drawable/message"
             android:title="@string/opensource_license" />
+        <item
+            android:id="@+id/nav_source"
+            android:icon="@drawable/message"
+            android:title="@string/source" />
     </group>
 
     <item android:title="@string/more">
