@@ -14,14 +14,19 @@ Copyright 2018 YARSICT
         See the License for the specific language governing permissions and
         limitations under the License.
 -->
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/background_light"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/app_bar_main">
-
-</android.support.constraint.ConstraintLayout>
+<resources>
+    <string-array name="theme_items">
+        <item>红色</item>
+        <item>蓝色</item>
+        <item>橙色</item>
+        <item>绿色</item>
+        <item>紫色</item>
+    </string-array>
+    <string-array name="theme_items_values">
+        <item>red</item>
+        <item>blue</item>
+        <item>orange</item>
+        <item>green</item>
+        <item>purple</item>
+    </string-array>
+</resources>

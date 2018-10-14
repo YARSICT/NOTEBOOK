@@ -3,7 +3,8 @@
 Copyright 2018 YARSICT
 
         Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
+        you may not use this file except in·
+         compliance with the License.
         You may obtain a copy of the License at
 
         http://www.apache.org/licenses/LICENSE-2.0
@@ -23,9 +24,11 @@ Copyright 2018 YARSICT
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/RED">
         <activity android:name=".license"/>
         <activity android:name=".source"/>
+        <activity android:name=".settings"/>
+        <activity android:name=".BaseActivity"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

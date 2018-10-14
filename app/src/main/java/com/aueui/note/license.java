@@ -15,18 +15,38 @@ Copyright 2018 YARSICT
 */
 package com.aueui.note;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 
-public class license extends AppCompatActivity {
+public class license extends BaseActivity {
     private WebView license_webview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            CurrentTheme = savedInstanceState.getInt("CurrentTheme");
+            setAllTheme(CurrentTheme);
+        }
+        if(isTheme().equals("blue")){
+            setAllTheme(R.style.BLUE);
+        }
+        if(isTheme().equals("red")){
+            setAllTheme(R.style.RED);
+        }
+        if(isTheme().equals("green")){
+            setAllTheme(R.style.GREEN);
+        }
+        if(isTheme().equals("orange")){
+            setAllTheme(R.style.ORANGE);
+        }
+        if(isTheme().equals("purple")){
+            setAllTheme(R.style.PURPLE);
+        }
         setContentView(R.layout.license);
         init();
         license_webview.loadUrl("http://www.apache.org/licenses/LICENSE-2.0.html");

@@ -16,9 +16,13 @@ Copyright 2018 YARSICT
 package com.aueui.note;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,16 +32,45 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private static final String TAG = "MainActivity";
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("CurrentTheme", CurrentTheme);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG,isTheme());
+        if(isTheme().equals("blue")){
+           toolbarcolor=R.color.blue;
+            getWindow().setStatusBarColor(getResources().getColor(R.color.blue));
+        }
+        if(isTheme().equals("red")){
+            toolbarcolor=R.color.red;
+            getWindow().setStatusBarColor(getResources().getColor(R.color.red));
+        }
+        if(isTheme().equals("orange")){
+            toolbarcolor=R.color.orange;
+            getWindow().setStatusBarColor(getResources().getColor(R.color.orange));
+        }
+        if(isTheme().equals("green")){
+            toolbarcolor=R.color.green;
+            getWindow().setStatusBarColor(getResources().getColor(R.color.green));
+        }
+        if(isTheme().equals("purple")){
+            toolbarcolor=R.color.purple;
+            getWindow().setStatusBarColor(getResources().getColor(R.color.purple));
+        }
         setContentView(R.layout.activity_main);
+        Log.i(TAG, Theme_all + "");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+       toolbar.setBackgroundColor(getResources().getColor(toolbarcolor));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +80,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -100,9 +134,12 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, license.class);
             startActivity(intent);
         } else if (id == R.id.nav_source) {
-            Intent intent = new Intent(MainActivity.this,source.class);
+            Intent intent = new Intent(MainActivity.this, source.class);
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(MainActivity.this, settings.class);
+            startActivity(intent);
+            recreate();
 
         } else if (id == R.id.nav_send) {
 
