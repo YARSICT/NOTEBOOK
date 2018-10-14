@@ -18,21 +18,29 @@ package com.aueui.note;
 
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 
 public class settings extends PreferenceActivity {
     private static final String TAG = "settings";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.pref_settings);
         getWindow().setStatusBarColor(getResources().getColor(R.color.black));
-
         PreferenceManager manager = getPreferenceManager();
         ListPreference listPreference = (ListPreference) manager.findPreference("theme_items");
+        Preference one = findPreference("theme_items");
+        one.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Toast.makeText(settings.this, "重启应用后生效", Toast.LENGTH_SHORT).show();
+                return true;
 
+            }
+        });
 
-}}
+      }}
