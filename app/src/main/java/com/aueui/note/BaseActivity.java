@@ -41,5 +41,22 @@ public class BaseActivity extends AppCompatActivity {
         String theme_now = sharedPreferences.getString("theme_items", "");
         return theme_now;
     }
+    public void setUserTheme(){
+        if(isTheme().equals("blue")){
+            setAllTheme(R.style.BLUE);
+        }
+        if(isTheme().equals("red")){
+            setAllTheme(R.style.RED);
+        }
+        if(isTheme().equals("green")){
+            setAllTheme(R.style.GREEN);
+        }
+        if(isTheme().equals("orange")){
+            setAllTheme(R.style.ORANGE);
+        }
+        if(isTheme().equals("purple")){
+            setAllTheme(R.style.PURPLE);
+        }
+    }
 
 }

@@ -32,21 +32,7 @@ public class license extends BaseActivity {
             CurrentTheme = savedInstanceState.getInt("CurrentTheme");
             setAllTheme(CurrentTheme);
         }
-        if(isTheme().equals("blue")){
-            setAllTheme(R.style.BLUE);
-        }
-        if(isTheme().equals("red")){
-            setAllTheme(R.style.RED);
-        }
-        if(isTheme().equals("green")){
-            setAllTheme(R.style.GREEN);
-        }
-        if(isTheme().equals("orange")){
-            setAllTheme(R.style.ORANGE);
-        }
-        if(isTheme().equals("purple")){
-            setAllTheme(R.style.PURPLE);
-        }
+       setUserTheme();
         setContentView(R.layout.license);
         init();
         license_webview.loadUrl("http://www.apache.org/licenses/LICENSE-2.0.html");
