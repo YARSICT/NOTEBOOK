@@ -15,25 +15,22 @@ Copyright 2018 YARSICT
 */
 package com.aueui.note;
 
-import android.content.SharedPreferences;
+import android.app.ActionBar;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.webkit.WebView;
+import android.view.Window;
 
-public class license extends BaseActivity {
-    private WebView license_webview;
+
+public class editor extends BaseActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setUserTheme();
-        setContentView(R.layout.license);
-        init();
-        license_webview.loadUrl("http://www.apache.org/licenses/LICENSE-2.0.html");
-    }
-    public void init() {
-        license_webview = (WebView) findViewById(R.id.license_webview);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.editor);
+
+
+
     }
 }
+

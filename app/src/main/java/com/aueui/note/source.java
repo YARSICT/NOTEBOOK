@@ -27,17 +27,11 @@ public class source extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            CurrentTheme = savedInstanceState.getInt("CurrentTheme");
-            setAllTheme(CurrentTheme);
-        }
        setUserTheme();
         setContentView(R.layout.license);
         init();
         source_webview.loadUrl("https://github.com/YARSICT/NOTEBOOK");
-
     }
-
     public void init() {
         source_webview = (WebView) findViewById(R.id.license_webview);
     }

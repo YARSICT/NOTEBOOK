@@ -10,4 +10,5 @@
     <color name="purple">#A020F0</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="night">#212121</color>
 </resources>

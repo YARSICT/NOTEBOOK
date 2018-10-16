@@ -16,6 +16,7 @@ Copyright 2018 YARSICT
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
@@ -28,6 +29,11 @@ Copyright 2018 YARSICT
             android:id="@+id/nav_source"
             android:icon="@drawable/message"
             android:title="@string/source" />
+        <item
+            android:id="@+id/nav_day_night_switch"
+            android:icon="@drawable/night"
+            android:title="@string/day_night_switch" />
+
     </group>
 
     <item android:title="@string/more">

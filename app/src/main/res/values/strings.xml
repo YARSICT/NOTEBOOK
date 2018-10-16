@@ -11,5 +11,7 @@
     <string name="about">关于</string>
     <string name="opensource_license">开源许可</string>
     <string name="source">项目源码</string>
+    <string name="day_night_switch">夜间模式</string>
+    <string name="new_note">新建记事</string>
 
 </resources>
