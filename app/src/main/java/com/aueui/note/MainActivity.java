@@ -46,6 +46,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aueui.note.write.notes;
+import com.aueui.note.write.read;
 
 import org.litepal.LitePal;
 
@@ -85,12 +86,14 @@ public class MainActivity extends BaseActivity
 
         class ViewHolder extends RecyclerView.ViewHolder {
             View Notesview;
-            TextView NotesName;
+            TextView NotesContext;
+            TextView NotesTitle;
 
             public ViewHolder(View view) {
                 super(view);
                 Notesview = view;
-                NotesName = (TextView) view.findViewById(R.id.notes_context);
+                NotesContext = (TextView) view.findViewById(R.id.notes_context);
+                NotesTitle = (TextView) view.findViewById(R.id.notes_title);
 
             }
         }
@@ -109,17 +112,20 @@ public class MainActivity extends BaseActivity
                 public void onClick(View view) {
                     int position = holder.getAdapterPosition();
                     Notes Notes = mNoteslist.get(position);
-                    Toast.makeText(view.getContext(), Notes.getTitle(), Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(MainActivity.this,read.class);
+                    intent.putExtra("title",Notes.getTitle());
+                    intent.putExtra("context",Notes.getContext());
+                    startActivity(intent);
                 }
             });
-            holder.NotesName.setOnClickListener(new View.OnClickListener() {
+        /*    holder.NotesContext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = holder.getAdapterPosition();
                     Notes Notes = mNoteslist.get(position);
                     Toast.makeText(view.getContext(), Notes.getContext(), Toast.LENGTH_LONG).show();
                 }
-            });
+            });*/
 
             return holder;
         }
@@ -127,7 +133,8 @@ public class MainActivity extends BaseActivity
         @Override
         public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
             Notes Notes = mNoteslist.get(i);
-            viewHolder.NotesName.setText(Notes.getContext());
+            viewHolder.NotesContext.setText(Notes.getContext());
+            viewHolder.NotesTitle.setText(Notes.getTitle());
 
         }
 
@@ -185,6 +192,7 @@ public class MainActivity extends BaseActivity
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, editor.class);
                 startActivity(intent);
+                finish();
             }
         });
         RecyclerView rv = (RecyclerView) findViewById(R.id.notes_items);
@@ -300,7 +308,7 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_settings) {
             Intent intent = new Intent(MainActivity.this, settings.class);
             startActivity(intent);
-            recreate();
+            finish();
 
         } else if (id == R.id.nav_send) {
 

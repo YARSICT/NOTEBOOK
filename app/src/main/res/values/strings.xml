@@ -13,5 +13,7 @@
     <string name="source">项目源码</string>
     <string name="day_night_switch">夜间模式</string>
     <string name="new_note">新建记事</string>
+    <string name="note_title">标题</string>
+    <string name="note_context">写点什么吧</string>
 
 </resources>

@@ -16,8 +16,10 @@ Copyright 2018 YARSICT
 package com.aueui.note;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -34,6 +36,9 @@ import java.util.List;
 public class editor extends BaseActivity {
 
     private String note_text;
+    private String note_titles;
+    private EditText editText;
+    private EditText editText1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,26 +47,47 @@ public class editor extends BaseActivity {
         setContentView(R.layout.editor);
         LitePal.getDatabase();
         Button note_commit = (Button) findViewById(R.id.note_commit);
-        EditText editText = (EditText) findViewById(R.id.note_context);
+        editText = (EditText) findViewById(R.id.note_context);
+        editText1 = (EditText) findViewById(R.id.note_title);
         if (editText.getText().toString().equals("")) {
 
-           /* List<notes> notesList = LitePal.findAll(notes.class);
-            for (notes notes : notesList) {
-                editText.setText(notes.getNotes_context());
-            }*/
         }
+        //  if (isread==true) {
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("title");
+        String context = intent.getStringExtra("context");
+        editText.setText(title);
+        editText1.setText(context);
+        isread = false;
+        // }
         note_commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText editText = (EditText) findViewById(R.id.note_context);
+                EditText note_context = (EditText) findViewById(R.id.note_context);
                 note_text = editText.getText().toString();
                 notes notes = new notes();
                 notes.setNotes_context(note_text);
+                EditText note_title = (EditText) findViewById(R.id.note_title);
+                note_titles = note_title.getText().toString();
+                notes.setNotes_title(note_titles);
                 notes.save();
+                Intent intent = new Intent(editor.this, MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent intent = new Intent(editor.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return false;
+    }
 }
+
 

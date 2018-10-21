@@ -16,11 +16,15 @@ Copyright 2018 YARSICT
 package com.aueui.note;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.Toast;
 
 
@@ -37,10 +41,20 @@ public class settings extends PreferenceActivity {
         one.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Toast.makeText(settings.this, "重启应用后生效", Toast.LENGTH_SHORT).show();
+
                 return true;
 
             }
         });
 
-      }}
+      }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent intent=new Intent(settings.this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return false;
+    }
+}
