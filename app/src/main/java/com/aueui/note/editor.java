@@ -56,8 +56,8 @@ public class editor extends BaseActivity {
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         String context = intent.getStringExtra("context");
-        editText.setText(title);
-        editText1.setText(context);
+        editText.setText(context);
+        editText1.setText(title);
         isread = false;
         // }
         note_commit.setOnClickListener(new View.OnClickListener() {
