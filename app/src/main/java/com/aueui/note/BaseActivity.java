@@ -24,7 +24,7 @@ public class BaseActivity extends AppCompatActivity {
     public static int Theme_all;
     public int CurrentTheme;
     public int toolbarcolor = R.color.red;
-    public Boolean isread=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

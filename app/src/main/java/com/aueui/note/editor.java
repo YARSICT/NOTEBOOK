@@ -17,6 +17,7 @@ package com.aueui.note;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.aueui.note.write.notes;
 
@@ -39,6 +41,9 @@ public class editor extends BaseActivity {
     private String note_titles;
     private EditText editText;
     private EditText editText1;
+    private String title;
+    private String context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,26 +59,44 @@ public class editor extends BaseActivity {
         }
         //  if (isread==true) {
         Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
-        String context = intent.getStringExtra("context");
+        title = intent.getStringExtra("title");
+        context = intent.getStringExtra("context");
+      //  where=intent.getStringExtra("where");
         editText.setText(context);
         editText1.setText(title);
-        isread = false;
+
         // }
         note_commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText note_context = (EditText) findViewById(R.id.note_context);
-                note_text = editText.getText().toString();
-                notes notes = new notes();
-                notes.setNotes_context(note_text);
                 EditText note_title = (EditText) findViewById(R.id.note_title);
+                notes notes = new notes();
+                note_text = editText.getText().toString();
                 note_titles = note_title.getText().toString();
-                notes.setNotes_title(note_titles);
-                notes.save();
+                SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+                String where = sharedPreferences.getString("where","");
+                if (where.equals("MainActivity")) {
+                    notes.setNotes_title(note_titles);
+                    notes.setNotes_context(note_text);
+                    notes.save();
+                    Toast.makeText(editor.this,"保存成功",Toast.LENGTH_SHORT).show();
+                }else
+                if (where.equals("read")) {
+                    notes.setNotes_title(note_titles);
+                    notes.setNotes_context(note_text);
+                    notes.updateAll("notes_title = ? and notes_context = ?", title, context);
+                    Toast.makeText(editor.this,"修改成功",Toast.LENGTH_SHORT).show();
+                }else {
+                    notes.setNotes_title(note_titles);
+                    notes.setNotes_context(note_text);
+                    notes.save();
+                }
                 Intent intent = new Intent(editor.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+
+
             }
         });
 

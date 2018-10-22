@@ -31,7 +31,8 @@ Copyright 2018 YARSICT
         <activity android:name=".settings"/>
         <activity android:name=".BaseActivity"/>
         <activity android:name=".editor"
-            android:theme="@style/editor"/>
+            android:theme="@style/editor"
+            android:launchMode="singleInstance"/>
         <activity android:name=".write.read"
             android:theme="@style/editor"/>
         <activity
