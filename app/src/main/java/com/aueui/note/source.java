@@ -27,7 +27,7 @@ public class source extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setUserTheme();
+        setUserTheme();
         setContentView(R.layout.license);
         init();
         source_webview.loadUrl("https://github.com/YARSICT/NOTEBOOK");

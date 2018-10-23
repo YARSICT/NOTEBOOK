@@ -123,17 +123,17 @@ public class MainActivity extends BaseActivity
             holder.Notesview.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                   final int position = holder.getAdapterPosition();
+                    final int position = holder.getAdapterPosition();
                     final Notes Notes = mNoteslist.get(position);
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("删除");
-                    builder.setMessage("");
+                    builder.setMessage("确认删除这条记事吗");
                     builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             notifyItemRemoved(position);
-                           // notifyDataSetChanged();
-                           // LitePal.deleteAll(notes.class, Notes.getTitle());
+                            LitePal.deleteAll(notes.class, "notes_context = ? and notes_title = ?", Notes.getContext(), Notes.getTitle());
+                            recreate();
                         }
 
                     });
@@ -144,7 +144,7 @@ public class MainActivity extends BaseActivity
                         }
                     });
                     builder.show();
-                   // Toast.makeText(MainActivity.this, position + "", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(MainActivity.this, position + "", Toast.LENGTH_SHORT).show();
                     return true;
                 }
             });
@@ -172,6 +172,7 @@ public class MainActivity extends BaseActivity
         super.onSaveInstanceState(outState);
         outState.putInt("CurrentTheme", CurrentTheme);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -336,8 +337,9 @@ public class MainActivity extends BaseActivity
             startActivity(intent);
             finish();
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_about) {
+            Intent intent = new Intent(MainActivity.this, about.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

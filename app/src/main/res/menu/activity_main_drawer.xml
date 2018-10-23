@@ -43,7 +43,7 @@ Copyright 2018 YARSICT
                 android:icon="@drawable/setup"
                 android:title="@string/settings" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_about"
                 android:icon="@drawable/info"
                 android:title="@string/about" />
         </menu>

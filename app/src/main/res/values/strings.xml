@@ -15,5 +15,7 @@
     <string name="new_note">新建记事</string>
     <string name="note_title">标题</string>
     <string name="note_context">写点什么吧</string>
+    <string name="ABOUT_US">aueUI开源项目 All User Can Enjoy</string>
+    <string name="about_info">aueui.yarsict.top\nCREATE BY YARSICT</string>
 
 </resources>
