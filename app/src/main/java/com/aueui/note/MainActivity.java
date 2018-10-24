@@ -251,6 +251,21 @@ public class MainActivity extends BaseActivity
             navigationView.getMenu().findItem(R.id.nav_day_night_switch).setTitle("夜间模式");
 
         }
+        if (isTheme().equals("blue")) {
+           constraintLayout.setBackgroundResource(R.drawable.blue_gradient);
+        }
+        if (isTheme().equals("red")) {
+            constraintLayout.setBackgroundResource(R.drawable.red_gradient);
+        }
+        if (isTheme().equals("orange")) {
+            constraintLayout.setBackgroundResource(R.drawable.orange_gradient);
+        }
+        if (isTheme().equals("green")) {
+            constraintLayout.setBackgroundResource(R.drawable.green_gradient);
+        }
+        if (isTheme().equals("purple")) {
+            constraintLayout.setBackgroundResource(R.drawable.purple_gradient);
+        }
 
     }
 
