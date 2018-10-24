@@ -118,6 +118,7 @@ public class MainActivity extends BaseActivity
                     intent.putExtra("title", Notes.getTitle());
                     intent.putExtra("context", Notes.getContext());
                     startActivity(intent);
+                    finish();
                 }
             });
             holder.Notesview.setOnLongClickListener(new View.OnLongClickListener() {
