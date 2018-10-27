@@ -43,6 +43,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +61,7 @@ public class MainActivity extends BaseActivity
     private static final String TAG = "MainActivity";
     private ConstraintLayout constraintLayout;
     private List<Notes> Noteslist = new ArrayList();
+    private LinearLayout layout;
 
     public class Notes {
         public String title;
@@ -251,6 +253,7 @@ public class MainActivity extends BaseActivity
             navigationView.getMenu().findItem(R.id.nav_day_night_switch).setTitle("夜间模式");
 
         }
+
         if (isTheme().equals("blue")) {
            constraintLayout.setBackgroundResource(R.drawable.blue_gradient);
         }
