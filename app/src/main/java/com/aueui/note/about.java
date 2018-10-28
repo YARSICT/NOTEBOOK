@@ -27,7 +27,7 @@ public class about extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setUserTheme();
+       // setUserTheme();
         setContentView(R.layout.about);
         if (isTheme().equals("night")) {
             ConstraintLayout constraintLayout=(ConstraintLayout)findViewById(R.id.about_layout);

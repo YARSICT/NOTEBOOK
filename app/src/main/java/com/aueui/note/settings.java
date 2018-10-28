@@ -16,25 +16,31 @@ Copyright 2018 YARSICT
 package com.aueui.note;
 
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 
-public class settings extends PreferenceActivity {
+public class settings extends PreferenceFragment {
     private static final String TAG = "settings";
+    private Toolbar toolbar;
+    private AppCompatDelegate delegate;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.pref_settings);
-        getWindow().setStatusBarColor(getResources().getColor(R.color.black));
         PreferenceManager manager = getPreferenceManager();
         ListPreference listPreference = (ListPreference) manager.findPreference("theme_items");
         Preference one = findPreference("theme_items");
@@ -46,15 +52,7 @@ public class settings extends PreferenceActivity {
 
             }
         });
-
-      }
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Intent intent=new Intent(settings.this,MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        return false;
     }
+
+
 }

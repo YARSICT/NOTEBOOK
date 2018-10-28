@@ -3,9 +3,17 @@
     <!-- Base application theme. -->
     <style name="editor" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#C2C2C2</item>
-        <item name="colorPrimaryDark">#C2C2C2</item>
+        <item name="colorPrimary">#77A1D3</item>
+        <item name="colorPrimaryDark">#77A1D3</item>
         <item name="colorAccent">#C2C2C2</item>
+
+
+    </style>
+    <style name="about" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#4bc0c8</item>
+        <item name="colorPrimaryDark">#4bc0c8</item>
+        <item name="colorAccent">#4bc0c8</item>
 
 
     </style>

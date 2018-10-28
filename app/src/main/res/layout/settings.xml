@@ -19,5 +19,25 @@ Copyright 2018 YARSICT
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/red_gradient1"
+            android:paddingTop="5dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <FrameLayout
+            android:id="@+id/settings_fra"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

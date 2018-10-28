@@ -188,6 +188,7 @@ public class MainActivity extends BaseActivity
         if (isTheme().equals("red")) {
             toolbarcolor = R.color.red;
             getWindow().setStatusBarColor(getResources().getColor(R.color.red));
+
         }
         if (isTheme().equals("orange")) {
             toolbarcolor = R.color.orange;
@@ -352,7 +353,7 @@ public class MainActivity extends BaseActivity
             Intent intent = new Intent(MainActivity.this, source.class);
             startActivity(intent);
         } else if (id == R.id.nav_settings) {
-            Intent intent = new Intent(MainActivity.this, settings.class);
+            Intent intent = new Intent(MainActivity.this, settingfragment.class);
             startActivity(intent);
             finish();
 

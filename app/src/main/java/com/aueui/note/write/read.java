@@ -19,19 +19,23 @@ package com.aueui.note.write;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.aueui.note.BaseActivity;
+import com.aueui.note.MainActivity;
 import com.aueui.note.R;
 import com.aueui.note.editor;
+import com.aueui.note.settings;
 
 public class read extends BaseActivity {
     private TextView read_title;
     private TextView read_context;
     private Button read_edit;
+    private Button read_share;
     String title;
     String context;
 
@@ -47,6 +51,7 @@ public class read extends BaseActivity {
         read_title.setText(title);
         read_context.setText(context);
         read_edit = (Button) findViewById(R.id.edit);
+        read_share = (Button) findViewById(R.id.share);
         read_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,5 +65,37 @@ public class read extends BaseActivity {
                 finish();
             }
         });
+        read_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareText("分享",title,context);
+            }
+        });
+
+    }
+    private void shareText(String Title, String subject, String content) {
+        if (content == null || "".equals(content)) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        if (subject != null && !"".equals(subject)) {
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        }
+        intent.putExtra(Intent.EXTRA_TEXT, content);
+        if (Title != null && !"".equals(Title)) {
+            startActivity(Intent.createChooser(intent, Title));
+        } else {
+            startActivity(intent);
+        }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent intent=new Intent(read.this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return false;
     }
 }

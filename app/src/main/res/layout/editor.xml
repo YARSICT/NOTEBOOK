@@ -19,7 +19,7 @@ Copyright 2018 YARSICT
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C2C2C2">
+    android:background="@drawable/read_gradient">
 
     <Button
         android:id="@+id/note_commit"
@@ -44,7 +44,7 @@ Copyright 2018 YARSICT
         android:hint="@string/note_context"
         android:inputType="textMultiLine"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

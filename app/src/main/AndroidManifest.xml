@@ -26,16 +26,23 @@ Copyright 2018 YARSICT
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/RED">
-        <activity android:name=".license"/>
-        <activity android:name=".source"/>
-        <activity android:name=".settings"/>
+        <activity android:name=".license"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".source"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".settingfragment"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity"
+            />
         <activity android:name=".BaseActivity"/>
         <activity android:name=".editor"
             android:theme="@style/editor"
             android:launchMode="singleInstance"/>
         <activity android:name=".write.read"
             android:theme="@style/editor"/>
-        <activity android:name=".about"/>
+        <activity android:name=".about"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/about"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleInstance"
