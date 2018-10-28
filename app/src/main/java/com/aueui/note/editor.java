@@ -32,6 +32,8 @@ import com.aueui.note.write.notes;
 import org.litepal.LitePal;
 import org.litepal.crud.LitePalSupport;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -61,7 +63,7 @@ public class editor extends BaseActivity {
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
         context = intent.getStringExtra("context");
-      //  where=intent.getStringExtra("where");
+        //  where=intent.getStringExtra("where");
         editText.setText(context);
         editText1.setText(title);
 
@@ -71,25 +73,33 @@ public class editor extends BaseActivity {
             public void onClick(View v) {
                 EditText note_context = (EditText) findViewById(R.id.note_context);
                 EditText note_title = (EditText) findViewById(R.id.note_title);
+                Date date = new Date(System.currentTimeMillis());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");// HH:mm:ss
+
+                String date_string = simpleDateFormat.format(date);
+                //Toast.makeText(editor.this,date_string,Toast.LENGTH_LONG).show();
                 notes notes = new notes();
+
                 note_text = editText.getText().toString();
                 note_titles = note_title.getText().toString();
                 SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
-                String where = sharedPreferences.getString("where","");
+                String where = sharedPreferences.getString("where", "");
                 if (where.equals("MainActivity")) {
                     notes.setNotes_title(note_titles);
                     notes.setNotes_context(note_text);
+                    notes.setDate(date_string);
                     notes.save();
-                    Toast.makeText(editor.this,"保存成功",Toast.LENGTH_SHORT).show();
-                }else
-                if (where.equals("read")) {
+                    Toast.makeText(editor.this, "保存成功", Toast.LENGTH_SHORT).show();
+                } else if (where.equals("read")) {
                     notes.setNotes_title(note_titles);
                     notes.setNotes_context(note_text);
+                    notes.setDate(date_string);
                     notes.updateAll("notes_title = ? and notes_context = ?", title, context);
-                    Toast.makeText(editor.this,"修改成功",Toast.LENGTH_SHORT).show();
-                }else {
+                    Toast.makeText(editor.this, "修改成功", Toast.LENGTH_SHORT).show();
+                } else {
                     notes.setNotes_title(note_titles);
                     notes.setNotes_context(note_text);
+                    notes.setDate(date_string);
                     notes.save();
                 }
                 Intent intent = new Intent(editor.this, MainActivity.class);

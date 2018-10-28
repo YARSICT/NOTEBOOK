@@ -31,13 +31,17 @@ import com.aueui.note.R;
 import com.aueui.note.editor;
 import com.aueui.note.settings;
 
+import java.util.Date;
+
 public class read extends BaseActivity {
     private TextView read_title;
     private TextView read_context;
     private Button read_edit;
     private Button read_share;
+    private TextView read_date;
     String title;
     String context;
+    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,13 @@ public class read extends BaseActivity {
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
         context = intent.getStringExtra("context");
+        date = intent.getStringExtra("date");
         read_context = (TextView) findViewById(R.id.read_context);
         read_title = (TextView) findViewById(R.id.read_title);
+        read_date = (TextView) findViewById(R.id.read_date);
         read_title.setText(title);
         read_context.setText(context);
+        read_date.setText(date);
         read_edit = (Button) findViewById(R.id.edit);
         read_share = (Button) findViewById(R.id.share);
         read_edit.setOnClickListener(new View.OnClickListener() {
@@ -68,11 +75,12 @@ public class read extends BaseActivity {
         read_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareText("分享",title,context);
+                shareText("分享", title, context);
             }
         });
 
     }
+
     private void shareText(String Title, String subject, String content) {
         if (content == null || "".equals(content)) {
             return;
@@ -89,10 +97,11 @@ public class read extends BaseActivity {
             startActivity(intent);
         }
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Intent intent=new Intent(read.this,MainActivity.class);
+            Intent intent = new Intent(read.this, MainActivity.class);
             startActivity(intent);
             finish();
         }

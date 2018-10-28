@@ -14,10 +14,10 @@ Copyright 2018 YARSICT
         limitations under the License.
 */package com.aueui.note.write;
 
-import org.litepal.crud.LitePalSupport;;
+import org.litepal.crud.LitePalSupport;;import java.util.Date;
 
 public class notes extends LitePalSupport{
-    private int id;
+    private String date;
     private String notes_title;
     private String notes_context;
 
@@ -38,12 +38,13 @@ public class notes extends LitePalSupport{
         this.notes_title = notes_title;
     }
 
-    public int getId() {
+    public String getDate() {
 
-        return id;
+        return date;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDate(String date) {
+        this.date = date;
+
     }
 }

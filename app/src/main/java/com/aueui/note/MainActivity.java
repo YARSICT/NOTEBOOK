@@ -15,12 +15,14 @@ Copyright 2018 YARSICT
 */
 package com.aueui.note;
 
+import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.IInterface;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -29,6 +31,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +44,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,7 +57,10 @@ import com.aueui.note.write.read;
 
 import org.litepal.LitePal;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends BaseActivity
@@ -62,16 +69,18 @@ public class MainActivity extends BaseActivity
     private ConstraintLayout constraintLayout;
     private List<Notes> Noteslist = new ArrayList();
     private LinearLayout layout;
+    private RecyclerView rv;
+    private NotesAdapter adapter;
 
     public class Notes {
         public String title;
         public String context;
+        public String date;
 
-        public Notes(String title, String context) {
+        public Notes(String title, String context,String date) {
             this.title = title;
             this.context = context;
-
-
+            this.date = date;
         }
 
         public String getTitle() {
@@ -82,7 +91,9 @@ public class MainActivity extends BaseActivity
             return context;
         }
 
-
+        public String getDate() {
+            return date;
+        }
     }
 
     public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
@@ -119,6 +130,7 @@ public class MainActivity extends BaseActivity
                     Intent intent = new Intent(MainActivity.this, read.class);
                     intent.putExtra("title", Notes.getTitle());
                     intent.putExtra("context", Notes.getContext());
+                    intent.putExtra("date",Notes.getDate());
                     startActivity(intent);
                     finish();
                 }
@@ -226,13 +238,15 @@ public class MainActivity extends BaseActivity
                 finish();
             }
         });
-        RecyclerView rv = (RecyclerView) findViewById(R.id.notes_items);
+        rv = (RecyclerView) findViewById(R.id.notes_items);
         // StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         LinearLayoutManager LayoutManager = new LinearLayoutManager(this);
         //  rv.setLayoutManager(layoutManager);
         // LayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        LayoutManager.setStackFromEnd(true);
+        LayoutManager.setReverseLayout(true);
         rv.setLayoutManager(LayoutManager);
-        NotesAdapter adapter = new NotesAdapter(Noteslist);
+        adapter = new NotesAdapter(Noteslist);
         rv.setAdapter(adapter);
 
 
@@ -256,7 +270,7 @@ public class MainActivity extends BaseActivity
         }
 
         if (isTheme().equals("blue")) {
-           constraintLayout.setBackgroundResource(R.drawable.blue_gradient);
+            constraintLayout.setBackgroundResource(R.drawable.blue_gradient);
         }
         if (isTheme().equals("red")) {
             constraintLayout.setBackgroundResource(R.drawable.red_gradient);
@@ -273,10 +287,11 @@ public class MainActivity extends BaseActivity
 
     }
 
+
     private void initNotes() {
         List<notes> notesList = LitePal.findAll(notes.class);
         for (notes notes : notesList) {
-            Notes note = new Notes(notes.getNotes_title(), notes.getNotes_context());
+            Notes note = new Notes(notes.getNotes_title(), notes.getNotes_context(), notes.getDate());
             Noteslist.add(note);
         }
 
@@ -367,3 +382,4 @@ public class MainActivity extends BaseActivity
         return true;
     }
 }
+
