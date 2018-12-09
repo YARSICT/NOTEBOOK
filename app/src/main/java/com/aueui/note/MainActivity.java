@@ -25,6 +25,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,7 +63,7 @@ public class MainActivity extends BaseActivity
         public String context;
         public String date;
 
-        public Notes(String title, String context,String date) {
+        Notes(String title, String context, String date) {
             this.title = title;
             this.context = context;
             this.date = date;
@@ -89,7 +90,7 @@ public class MainActivity extends BaseActivity
             TextView NotesContext;
             TextView NotesTitle;
 
-            public ViewHolder(View view) {
+            ViewHolder(View view) {
                 super(view);
                 Notesview = view;
                 NotesContext = (TextView) view.findViewById(R.id.notes_context);
@@ -98,15 +99,25 @@ public class MainActivity extends BaseActivity
             }
         }
 
-        public NotesAdapter(List<Notes> Noteslist) {
+        NotesAdapter(List<Notes> Noteslist) {
             mNoteslist = Noteslist;
         }
 
 
+        @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style, viewGroup, false);
-            final ViewHolder holder = new ViewHolder(view);
+            SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+            String list_ui = sharedPreferences.getString("list_ui", "list");
+            final ViewHolder holder;
+            View view;
+            if (list_ui.equals("list")) {
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style, viewGroup, false);
+
+            } else {
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style2, viewGroup, false);
+            }
+            holder = new ViewHolder(view);
             holder.Notesview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -115,7 +126,7 @@ public class MainActivity extends BaseActivity
                     Intent intent = new Intent(MainActivity.this, read.class);
                     intent.putExtra("title", Notes.getTitle());
                     intent.putExtra("context", Notes.getContext());
-                    intent.putExtra("date",Notes.getDate());
+                    intent.putExtra("date", Notes.getDate());
                     startActivity(intent);
                     finish();
                 }
@@ -128,6 +139,36 @@ public class MainActivity extends BaseActivity
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("删除");
                     builder.setMessage("确认删除这条记事吗");
+                    final String[] choices = {"复制", "删除", "分享"};
+                    builder.setItems(choices, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //  Toast.makeText(MainActivity.this, "选择的城市为：" + choices[which], Toast.LENGTH_SHORT).show();
+                            if (choices[which].equals("删除")) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                builder.setTitle("删除");
+                                builder.setMessage("确认删除这条记事吗");
+                                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        notifyItemRemoved(position);
+                                        LitePal.deleteAll(notes.class, "notes_context = ? and notes_title = ?", Notes.getContext(), Notes.getTitle());
+                                        recreate();
+                                    }
+
+                                });
+                                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                builder.show();
+                            }
+                        }
+                    });
+
+
                     builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -215,7 +256,7 @@ public class MainActivity extends BaseActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,Editor.class);
+                Intent intent = new Intent(MainActivity.this, Editor.class);
                 SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
                 editor.putString("where", "MainActivity");
                 editor.apply();
@@ -223,14 +264,20 @@ public class MainActivity extends BaseActivity
                 finish();
             }
         });
+        SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+        String list_ui = sharedPreferences.getString("list_ui", "list");
         rv = (RecyclerView) findViewById(R.id.notes_items);
-        // StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
-        LinearLayoutManager LayoutManager = new LinearLayoutManager(this);
-        //  rv.setLayoutManager(layoutManager);
-        // LayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        LayoutManager.setStackFromEnd(true);
-        LayoutManager.setReverseLayout(true);
-        rv.setLayoutManager(LayoutManager);
+        if (list_ui.equals("list")) {
+            LinearLayoutManager LayoutManager = new LinearLayoutManager(this);
+            LayoutManager.setStackFromEnd(true);
+            LayoutManager.setReverseLayout(true);
+            rv.setLayoutManager(LayoutManager);
+        } else {
+            StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+            layoutManager.setReverseLayout(true);
+            rv.setLayoutManager(layoutManager);
+        }
+        //LayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         adapter = new NotesAdapter(Noteslist);
         rv.setAdapter(adapter);
 
@@ -325,7 +372,7 @@ public class MainActivity extends BaseActivity
         Boolean isChecked = sharedPreferences.getBoolean("isNight", false);
         if (id == R.id.nav_day_night_switch) {
 
-            if (isChecked == false) {
+            if (!isChecked) {
 
                 SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
                 editor.putString("theme_items", "night");
@@ -345,14 +392,7 @@ public class MainActivity extends BaseActivity
                 recreate();
             }
         }
-
-        if (id == R.id.nav_license) {
-            Intent intent = new Intent(MainActivity.this, License.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_source) {
-            Intent intent = new Intent(MainActivity.this, Source.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_settings) {
+        if (id == R.id.nav_settings) {
             Intent intent = new Intent(MainActivity.this, Settings.class);
             startActivity(intent);
             finish();

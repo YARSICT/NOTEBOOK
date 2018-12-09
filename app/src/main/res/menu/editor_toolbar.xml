@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/back"
+        android:icon="@drawable/undo"
+        android:title="back"
+        app:showAsAction="never|always" />
+    <item
+        android:id="@+id/toward"
+        android:icon="@drawable/redo"
+        android:title="toward"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/go"
+        android:icon="@drawable/go"
+        android:title="go"
+        app:showAsAction="always" />
+</menu>

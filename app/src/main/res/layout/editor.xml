@@ -19,26 +19,28 @@ Copyright 2018 YARSICT
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/read_gradient">
+    android:background="#C2C2C2">
 
-    <Button
-        android:id="@+id/note_commit"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/go"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/editor_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?attr/actionModeCloseDrawable"
+        app:title="编辑"
+        tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/note_context"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:background="#0000"
         android:ems="10"
         android:hint="@string/note_context"
@@ -55,9 +57,9 @@ Copyright 2018 YARSICT
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_gravity="top"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="#0000"
         android:ems="10"
         android:hint="@string/note_title"
@@ -65,8 +67,34 @@ Copyright 2018 YARSICT
         android:maxLength="32"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/note_commit"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editor_toolbar" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/editor_fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/red"
+        android:clickable="true"
+        app:backgroundTint="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/menu" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/editor_reset"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@color/blue"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toTopOf="@+id/editor_fab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/reset" />
 </android.support.constraint.ConstraintLayout>

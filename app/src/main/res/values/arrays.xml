@@ -29,4 +29,12 @@ Copyright 2018 YARSICT
         <item>green</item>
         <item>purple</item>
     </string-array>
+    <string-array name="list_ui">
+        <item>默认布局</item>
+        <item>瀑布流布局</item>
+    </string-array>
+    <string-array name="list_ui_values">
+        <item>list</item>
+        <item>StaggeredGrid</item>
+    </string-array>
 </resources>

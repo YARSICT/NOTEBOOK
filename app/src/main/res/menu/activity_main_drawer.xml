@@ -22,14 +22,6 @@ Copyright 2018 YARSICT
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_license"
-            android:icon="@drawable/message"
-            android:title="@string/opensource_license" />
-        <item
-            android:id="@+id/nav_source"
-            android:icon="@drawable/message"
-            android:title="@string/source" />
-        <item
             android:id="@+id/nav_day_night_switch"
             android:icon="@drawable/night"
             android:title="@string/day_night_switch" />

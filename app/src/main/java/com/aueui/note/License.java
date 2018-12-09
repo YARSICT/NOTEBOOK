@@ -28,11 +28,12 @@ public class License extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setUserTheme();
+        setUserTheme();
         setContentView(R.layout.license);
         init();
         license_webview.loadUrl("http://www.apache.org/licenses/LICENSE-2.0.html");
     }
+
     public void init() {
         license_webview = (WebView) findViewById(R.id.license_webview);
     }

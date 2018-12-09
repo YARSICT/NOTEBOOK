@@ -22,8 +22,41 @@ Copyright 2018 YARSICT
             android:entries="@array/theme_items"
             android:entryValues="@array/theme_items_values"
             android:key="theme_items"
-            android:negativeButtonText="@null"
-            android:positiveButtonText="@null"
+            android:summary="@string/set_theme_sum"
             android:title="主题" />
+        <ListPreference
+            android:defaultValue="list"
+            android:entries="@array/list_ui"
+            android:entryValues="@array/list_ui_values"
+            android:key="list_ui"
+            android:summary="设置便签的布局方式"
+            android:title="布局样式" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="开源">
+        <Preference
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="code"
+            android:summary="https://github.com/YARSICT/NOTEBOOK"
+            android:title="项目代码" />
+
+        <Preference
+            android:id="@+id/permit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="permit"
+            android:summary="Apache License  Version 2.0"
+            android:title="开源许可" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="关于">
+
+        <Preference
+            android:id="@+id/web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="web"
+            android:summary="https://aueui.yarsict.top"
+            android:title="官方网站" />
     </PreferenceCategory>
 </PreferenceScreen>

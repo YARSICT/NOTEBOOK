@@ -16,16 +16,21 @@
 package com.aueui.note;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.Objects;
+
 
 public class Settings extends BaseActivity {
     android.support.v7.widget.Toolbar setting_toolbar;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +38,11 @@ public class Settings extends BaseActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         setting_toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(setting_toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         initToolbar();
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.settings_fra, new SettingsFragment())
+                .replace(R.id.settings_fra, new SettingsPreference.SettingsFragment())
                 .commit();
     }
 

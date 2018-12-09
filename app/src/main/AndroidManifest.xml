@@ -16,6 +16,7 @@ Copyright 2018 YARSICT
         limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.aueui.note">
 <uses-permission android:name="android.permission.INTERNET"/>
     <application
@@ -25,7 +26,8 @@ Copyright 2018 YARSICT
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/RED">
+        android:theme="@style/RED"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".License"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".Source"

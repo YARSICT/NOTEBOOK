@@ -33,8 +33,11 @@ Copyright 2018 YARSICT
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@drawable/nav_bg"
+        android:clickable="false"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer"
+        app:itemBackground="@color/transparent" />
 
 </android.support.v4.widget.DrawerLayout>

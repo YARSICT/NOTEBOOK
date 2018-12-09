@@ -43,5 +43,6 @@ public class About extends BaseActivity {
         textView.setTextColor(getResources().getColor(R.color.white));
         textView1.setTextColor(getResources().getColor(R.color.white));
         textView2.setTextColor(getResources().getColor(R.color.white));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.night));
     }
 }
