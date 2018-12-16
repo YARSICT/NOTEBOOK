@@ -25,6 +25,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -153,7 +154,7 @@ public class Editor extends BaseActivity {
             @Override
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
-                Boolean isexpand = sharedPreferences.getBoolean("fab_expand", true);
+                Boolean isexpand = sharedPreferences.getBoolean("fab_expand", false);
                 if (!isexpand) {
                     SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
                     editor.putBoolean("fab_expand", true);
@@ -197,85 +198,89 @@ public class Editor extends BaseActivity {
                     case R.id.go:
                         EditText note_context = (EditText) findViewById(R.id.note_context);
                         EditText note_title = (EditText) findViewById(R.id.note_title);
-                        Date date = new Date(System.currentTimeMillis());
-                        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
-                        String date_string = simpleDateFormat.format(date);
-                        notes notes = new notes();
-                        note_text = editText.getText().toString();
-                        note_titles = note_title.getText().toString();
-                        SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
-                        String where = sharedPreferences.getString("where", "");
-                        switch (where) {
-                            case "MainActivity":
-                                notes.setNotes_title(note_titles);
-                                notes.setNotes_context(note_text);
-                                notes.setDate(date_string);
-                                notes.save();
-                                Toast.makeText(Editor.this, save_success, Toast.LENGTH_SHORT).show();
-                                break;
-                            case "read":
-                                notes.setNotes_title(note_titles);
-                                notes.setNotes_context(note_text);
-                                notes.setDate(date_string);
-                                notes.updateAll("notes_title = ? and notes_context = ?", title, context);
-                                Toast.makeText(Editor.this, edit_sucess, Toast.LENGTH_SHORT).show();
-                                break;
-                            default:
-                                notes.setNotes_title(note_titles);
-                                notes.setNotes_context(note_text);
-                                notes.setDate(date_string);
-                                notes.save();
-                                break;
-                        }
-                        SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
-                        editor.putString("isCommit", "commit");
-                        editor.apply();
-                        FileOutputStream out = null;
-                        BufferedWriter writer = null;
-                        try {
-                            out = openFileOutput("cache_data", Context.MODE_PRIVATE);
-                            writer = new BufferedWriter(new OutputStreamWriter(out));
-                            writer.write("");
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } finally {
+                        if (TextUtils.isEmpty(note_context.getText()) && TextUtils.isEmpty(note_title.getText())) {
+                            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "内容不能为空", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        } else {
+                            Date date = new Date(System.currentTimeMillis());
+                            @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                            String date_string = simpleDateFormat.format(date);
+                            notes notes = new notes();
+                            note_text = editText.getText().toString();
+                            note_titles = note_title.getText().toString();
+                            SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+                            String where = sharedPreferences.getString("where", "");
+                            switch (where) {
+                                case "MainActivity":
+                                    notes.setNotes_title(note_titles);
+                                    notes.setNotes_context(note_text);
+                                    notes.setDate(date_string);
+                                    notes.save();
+                                    Toast.makeText(Editor.this, save_success, Toast.LENGTH_SHORT).show();
+                                    break;
+                                case "read":
+                                    notes.setNotes_title(note_titles);
+                                    notes.setNotes_context(note_text);
+                                    notes.setDate(date_string);
+                                    notes.updateAll("notes_title = ? and notes_context = ?", title, context);
+                                    Toast.makeText(Editor.this, edit_sucess, Toast.LENGTH_SHORT).show();
+                                    break;
+                                default:
+                                    notes.setNotes_title(note_titles);
+                                    notes.setNotes_context(note_text);
+                                    notes.setDate(date_string);
+                                    notes.save();
+                                    break;
+                            }
+                            SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+                            editor.putString("isCommit", "commit");
+                            editor.apply();
+                            FileOutputStream out = null;
+                            BufferedWriter writer = null;
                             try {
-                                {
-                                    if (writer != null) {
-                                        writer.close();
-                                    }
-                                }
+                                out = openFileOutput("cache_data", Context.MODE_PRIVATE);
+                                writer = new BufferedWriter(new OutputStreamWriter(out));
+                                writer.write("");
+
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            }
-
-                        }
-                        try {
-                            out = openFileOutput("title_data", Context.MODE_PRIVATE);
-                            writer = new BufferedWriter(new OutputStreamWriter(out));
-                            writer.write("");
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } finally {
-                            try {
-                                {
-                                    if (writer != null) {
-                                        writer.close();
+                            } finally {
+                                try {
+                                    {
+                                        if (writer != null) {
+                                            writer.close();
+                                        }
                                     }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
+
+                            }
+                            try {
+                                out = openFileOutput("title_data", Context.MODE_PRIVATE);
+                                writer = new BufferedWriter(new OutputStreamWriter(out));
+                                writer.write("");
+
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            }
+                            } finally {
+                                try {
+                                    {
+                                        if (writer != null) {
+                                            writer.close();
+                                        }
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
 
+                            }
+                            Intent intent = new Intent(Editor.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                            break;
                         }
-                        Intent intent = new Intent(Editor.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                        break;
                 }
-
                 return true;
             }
         });
@@ -290,7 +295,8 @@ public class Editor extends BaseActivity {
     }
 
     private void initEditor() {
-        EditText note_context = (EditText) findViewById(R.id.note_context);
+        EditText note_context = findViewById(R.id.note_context);
+        EditText note_title=findViewById(R.id.note_title);
         performEdit = new PerformEdit(note_context);
 
     }
@@ -342,9 +348,11 @@ public class Editor extends BaseActivity {
 
         }
     }
-
     protected void onDestroy() {
         super.onDestroy();
+        SharedPreferences.Editor editor_fab = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+        editor_fab.putBoolean("fab_expand", false);
+        editor_fab.apply();
         String input = editText.getText().toString();
         String titles = editText1.getText().toString();
         SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
@@ -358,7 +366,6 @@ public class Editor extends BaseActivity {
             save_title(titles);
         }
     }
-
     public String load() {
         FileInputStream in = null;
         BufferedReader reader = null;

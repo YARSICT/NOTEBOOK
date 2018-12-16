@@ -19,6 +19,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -47,6 +48,8 @@ import com.aueui.note.write.read;
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends BaseActivity
@@ -214,7 +217,6 @@ public class MainActivity extends BaseActivity
         outState.putInt("CurrentTheme", CurrentTheme);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -269,29 +271,21 @@ public class MainActivity extends BaseActivity
         rv = (RecyclerView) findViewById(R.id.notes_items);
         if (list_ui.equals("list")) {
             LinearLayoutManager LayoutManager = new LinearLayoutManager(this);
-            LayoutManager.setStackFromEnd(true);
-            LayoutManager.setReverseLayout(true);
             rv.setLayoutManager(LayoutManager);
         } else {
             StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-            layoutManager.setReverseLayout(true);
             rv.setLayoutManager(layoutManager);
         }
-        //LayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        Collections.reverse(Noteslist);
         adapter = new NotesAdapter(Noteslist);
         rv.setAdapter(adapter);
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
         if (isTheme().equals("night")) {
             navigationView.getMenu().findItem(R.id.nav_day_night_switch).setTitle("正常模式");
             navigationView.getMenu().findItem(R.id.nav_day_night_switch).setIcon(R.drawable.day);
@@ -300,7 +294,6 @@ public class MainActivity extends BaseActivity
             navigationView.getMenu().findItem(R.id.nav_day_night_switch).setTitle("夜间模式");
 
         }
-
         if (isTheme().equals("blue")) {
             constraintLayout.setBackgroundResource(R.drawable.blue_gradient);
         }
