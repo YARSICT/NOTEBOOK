@@ -13,27 +13,26 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.aueui.note.write;
+package com.aueui.note;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.aueui.note.BaseActivity;
-import com.aueui.note.Editor;
-import com.aueui.note.MainActivity;
-import com.aueui.note.R;
 
-
-public class read extends BaseActivity {
+public class Reader extends BaseActivity {
     private TextView read_title, read_context, read_date;
     private Button read_edit, read_share;
     String title, context, date;
-
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class read extends BaseActivity {
         read_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(read.this, Editor.class);
+                Intent intent1 = new Intent(Reader.this, Editor.class);
                 intent1.putExtra("title", title);
                 intent1.putExtra("context", context);
                 SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
@@ -58,6 +57,7 @@ public class read extends BaseActivity {
             @Override
             public void onClick(View v) {
                 shareText("分享", title, context);
+                loadCircularRevealAnim(500, linearLayout);
             }
         });
 
@@ -76,6 +76,7 @@ public class read extends BaseActivity {
         read_date = (TextView) findViewById(R.id.read_date);
         read_edit = (Button) findViewById(R.id.edit);
         read_share = (Button) findViewById(R.id.share);
+        linearLayout = findViewById(R.id.read_main);
         read_title.setText(title);
         read_context.setText(context);
         read_date.setText(date);
@@ -98,12 +99,20 @@ public class read extends BaseActivity {
         }
     }
 
+    public void loadCircularRevealAnim(int dur, View view) {
+        Animator animator = ViewAnimationUtils.createCircularReveal(view, view.getWidth(), 0, 0, view.getHeight());
+        animator.setDuration(dur);
+        animator.setInterpolator(new AccelerateInterpolator());
+        animator.start();
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Intent intent = new Intent(read.this, MainActivity.class);
+            Intent intent = new Intent(Reader.this, MainActivity.class);
             startActivity(intent);
             finish();
+            overridePendingTransition(R.anim.fade, R.anim.fade_exit);
         }
         return false;
     }

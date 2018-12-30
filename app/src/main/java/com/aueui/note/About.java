@@ -15,8 +15,10 @@
  */
 package com.aueui.note;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,5 +46,15 @@ public class About extends BaseActivity {
         textView1.setTextColor(getResources().getColor(R.color.white));
         textView2.setTextColor(getResources().getColor(R.color.white));
         getWindow().setStatusBarColor(getResources().getColor(R.color.night));
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent intent = new Intent(About.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.fade,R.anim.fade_exit);
+        }
+        return false;
     }
 }

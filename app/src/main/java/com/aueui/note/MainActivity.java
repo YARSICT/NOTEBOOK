@@ -15,11 +15,12 @@
  */
 package com.aueui.note;
 
+import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -37,18 +38,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aueui.note.write.notes;
-import com.aueui.note.write.read;
 
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -60,6 +63,8 @@ public class MainActivity extends BaseActivity
     private LinearLayout layout;
     private RecyclerView rv;
     private NotesAdapter adapter;
+    private Toolbar toolbar;
+
 
     public class Notes {
         public String title;
@@ -126,12 +131,13 @@ public class MainActivity extends BaseActivity
                 public void onClick(View view) {
                     int position = holder.getAdapterPosition();
                     Notes Notes = mNoteslist.get(position);
-                    Intent intent = new Intent(MainActivity.this, read.class);
+                    Intent intent = new Intent(MainActivity.this, Reader.class);
                     intent.putExtra("title", Notes.getTitle());
                     intent.putExtra("context", Notes.getContext());
                     intent.putExtra("date", Notes.getDate());
                     startActivity(intent);
                     finish();
+                    overridePendingTransition(R.anim.fade,R.anim.fade_exit);
                 }
             });
             holder.Notesview.setOnLongClickListener(new View.OnLongClickListener() {
@@ -217,6 +223,7 @@ public class MainActivity extends BaseActivity
         outState.putInt("CurrentTheme", CurrentTheme);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -248,13 +255,9 @@ public class MainActivity extends BaseActivity
 
         }
         setContentView(R.layout.activity_main);
-        Log.i(TAG, Theme_all + "");
-        constraintLayout = (ConstraintLayout) findViewById(R.id.main_constrain);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setBackgroundColor(getResources().getColor(toolbarcolor));
+        initView();
         initNotes();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -264,11 +267,11 @@ public class MainActivity extends BaseActivity
                 editor.apply();
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.fade,R.anim.fade_exit);
             }
         });
         SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
         String list_ui = sharedPreferences.getString("list_ui", "list");
-        rv = (RecyclerView) findViewById(R.id.notes_items);
         if (list_ui.equals("list")) {
             LinearLayoutManager LayoutManager = new LinearLayoutManager(this);
             rv.setLayoutManager(LayoutManager);
@@ -312,17 +315,23 @@ public class MainActivity extends BaseActivity
 
     }
 
-
     private void initNotes() {
         List<notes> notesList = LitePal.findAll(notes.class);
         for (notes notes : notesList) {
             Notes note = new Notes(notes.getNotes_title(), notes.getNotes_context(), notes.getDate());
             Noteslist.add(note);
         }
-
-
     }
 
+    private void initView() {
+        constraintLayout = (ConstraintLayout) findViewById(R.id.main_constrain);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        rv = (RecyclerView) findViewById(R.id.notes_items);
+        setSupportActionBar(toolbar);
+        toolbar.setBackgroundColor(getResources().getColor(toolbarcolor));
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade);
+        constraintLayout.startAnimation(animation);
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -337,8 +346,6 @@ public class MainActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-
-
         return true;
     }
 
@@ -373,7 +380,6 @@ public class MainActivity extends BaseActivity
                 editor.putBoolean("isNight", true);
                 editor.apply();
                 Toast.makeText(MainActivity.this, "夜间模式", Toast.LENGTH_SHORT).show();
-                recreate();
             } else {
                 SharedPreferences sharedPreferencess = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
                 String theme_now_resume = sharedPreferencess.getString("theme_items_now", "");
@@ -382,14 +388,15 @@ public class MainActivity extends BaseActivity
                 editor.putBoolean("isNight", false);
                 editor.apply();
                 Toast.makeText(MainActivity.this, "正常模式", Toast.LENGTH_SHORT).show();
-                recreate();
             }
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+            overridePendingTransition(R.anim.fade,0);
         }
         if (id == R.id.nav_settings) {
             Intent intent = new Intent(MainActivity.this, Settings.class);
             startActivity(intent);
             finish();
-
         } else if (id == R.id.nav_about) {
             Intent intent = new Intent(MainActivity.this, About.class);
             startActivity(intent);

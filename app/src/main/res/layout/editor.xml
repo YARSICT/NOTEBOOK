@@ -17,6 +17,7 @@ Copyright 2018 YARSICT
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/con_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#C2C2C2">
@@ -69,30 +70,32 @@ Copyright 2018 YARSICT
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editor_toolbar" />
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/editor_fab"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@color/red"
-            android:clickable="true"
-            app:backgroundTint="@color/red"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/menu" />
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/editor_reset"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="12dp"
-            android:background="@color/blue"
-            android:clickable="true"
-            android:visibility="invisible"
-            app:backgroundTint="@color/blue"
-            app:layout_constraintBottom_toTopOf="@+id/editor_fab"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/reset" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/editor_fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/red"
+        android:clickable="true"
+        app:backgroundTint="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/menu" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/editor_reset"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@color/blue"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toTopOf="@+id/editor_fab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/reset" />
 
 </android.support.constraint.ConstraintLayout>

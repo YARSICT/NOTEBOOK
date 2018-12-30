@@ -15,6 +15,7 @@
  */
 package com.aueui.note;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.AlertDialog;
@@ -24,18 +25,23 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.Window;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -68,7 +74,7 @@ public class Editor extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        switch (isTheme()){
+        switch (isTheme()) {
             case "red":
                 toolbarcolor = R.color.red;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.red));
@@ -296,7 +302,7 @@ public class Editor extends BaseActivity {
 
     private void initEditor() {
         EditText note_context = findViewById(R.id.note_context);
-        EditText note_title=findViewById(R.id.note_title);
+        EditText note_title = findViewById(R.id.note_title);
         performEdit = new PerformEdit(note_context);
 
     }
@@ -348,6 +354,7 @@ public class Editor extends BaseActivity {
 
         }
     }
+
     protected void onDestroy() {
         super.onDestroy();
         SharedPreferences.Editor editor_fab = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
@@ -366,6 +373,7 @@ public class Editor extends BaseActivity {
             save_title(titles);
         }
     }
+
     public String load() {
         FileInputStream in = null;
         BufferedReader reader = null;
@@ -426,6 +434,7 @@ public class Editor extends BaseActivity {
             Intent intent = new Intent(Editor.this, MainActivity.class);
             startActivity(intent);
             finish();
+            overridePendingTransition(R.anim.fade,R.anim.fade_exit);
         }
         return false;
     }
