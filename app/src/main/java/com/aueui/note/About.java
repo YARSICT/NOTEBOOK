@@ -37,10 +37,10 @@ public class About extends BaseActivity {
     }
 
     private void initView() {
-        ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.about_layout);
-        TextView textView = (TextView) findViewById(R.id.about_name);
-        TextView textView1 = (TextView) findViewById(R.id.about_info);
-        TextView textView2 = (TextView) findViewById(R.id.about_us);
+        ConstraintLayout constraintLayout = findViewById(R.id.about_layout);
+        TextView textView = findViewById(R.id.about_name);
+        TextView textView1 = findViewById(R.id.about_info);
+        TextView textView2 = findViewById(R.id.about_us);
         constraintLayout.setBackgroundColor(getResources().getColor(R.color.night));
         textView.setTextColor(getResources().getColor(R.color.white));
         textView1.setTextColor(getResources().getColor(R.color.white));

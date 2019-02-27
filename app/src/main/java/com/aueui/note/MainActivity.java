@@ -101,8 +101,8 @@ public class MainActivity extends BaseActivity
             ViewHolder(View view) {
                 super(view);
                 Notesview = view;
-                NotesContext = (TextView) view.findViewById(R.id.notes_context);
-                NotesTitle = (TextView) view.findViewById(R.id.notes_title);
+                NotesContext = view.findViewById(R.id.notes_context);
+                NotesTitle = view.findViewById(R.id.notes_title);
 
             }
         }
@@ -137,7 +137,7 @@ public class MainActivity extends BaseActivity
                     intent.putExtra("date", Notes.getDate());
                     startActivity(intent);
                     finish();
-                    overridePendingTransition(R.anim.fade,R.anim.fade_exit);
+                    overridePendingTransition(R.anim.fade, R.anim.fade_exit);
                 }
             });
             holder.Notesview.setOnLongClickListener(new View.OnLongClickListener() {
@@ -152,7 +152,6 @@ public class MainActivity extends BaseActivity
                     builder.setItems(choices, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //  Toast.makeText(MainActivity.this, "选择的城市为：" + choices[which], Toast.LENGTH_SHORT).show();
                             if (choices[which].equals("删除")) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                                 builder.setTitle("删除");
@@ -194,7 +193,6 @@ public class MainActivity extends BaseActivity
                         }
                     });
                     builder.show();
-                    // Toast.makeText(MainActivity.this, position + "", Toast.LENGTH_SHORT).show();
                     return true;
                 }
             });
@@ -257,7 +255,7 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         initView();
         initNotes();
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -267,7 +265,7 @@ public class MainActivity extends BaseActivity
                 editor.apply();
                 startActivity(intent);
                 finish();
-                overridePendingTransition(R.anim.fade,R.anim.fade_exit);
+                overridePendingTransition(R.anim.fade, R.anim.fade_exit);
             }
         });
         SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
@@ -282,12 +280,12 @@ public class MainActivity extends BaseActivity
         Collections.reverse(Noteslist);
         adapter = new NotesAdapter(Noteslist);
         rv.setAdapter(adapter);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         if (isTheme().equals("night")) {
             navigationView.getMenu().findItem(R.id.nav_day_night_switch).setTitle("正常模式");
@@ -324,17 +322,18 @@ public class MainActivity extends BaseActivity
     }
 
     private void initView() {
-        constraintLayout = (ConstraintLayout) findViewById(R.id.main_constrain);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        rv = (RecyclerView) findViewById(R.id.notes_items);
+        constraintLayout = findViewById(R.id.main_constrain);
+        toolbar = findViewById(R.id.toolbar);
+        rv = findViewById(R.id.notes_items);
         setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(getResources().getColor(toolbarcolor));
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade);
         constraintLayout.startAnimation(animation);
     }
+
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -391,7 +390,7 @@ public class MainActivity extends BaseActivity
             }
             finish();
             startActivity(new Intent(this, MainActivity.class));
-            overridePendingTransition(R.anim.fade,0);
+            overridePendingTransition(R.anim.fade, 0);
         }
         if (id == R.id.nav_settings) {
             Intent intent = new Intent(MainActivity.this, Settings.class);
@@ -402,7 +401,7 @@ public class MainActivity extends BaseActivity
             startActivity(intent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -12,4 +12,10 @@
     <color name="black">#000000</color>
     <color name="night">#212121</color>
     <color name="transparent">#00000000</color>
+    <color name="blue_tra">#304bc0c8</color>
+    <color name="red_tra">#30E34B5D</color>
+    <color name="green_tra">#301D976C</color>
+    <color name="orange_tra">#30f12711</color>
+    <color name="purple_tra">#307F00FF</color>
+    <color name="night_tra">#30212121</color>
 </resources>

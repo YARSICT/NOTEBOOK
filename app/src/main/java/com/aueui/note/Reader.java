@@ -71,11 +71,11 @@ public class Reader extends BaseActivity {
     }
 
     private void initView() {
-        read_context = (TextView) findViewById(R.id.read_context);
-        read_title = (TextView) findViewById(R.id.read_title);
-        read_date = (TextView) findViewById(R.id.read_date);
-        read_edit = (Button) findViewById(R.id.edit);
-        read_share = (Button) findViewById(R.id.share);
+        read_context = findViewById(R.id.read_context);
+        read_title = findViewById(R.id.read_title);
+        read_date = findViewById(R.id.read_date);
+        read_edit = findViewById(R.id.edit);
+        read_share = findViewById(R.id.share);
         linearLayout = findViewById(R.id.read_main);
         read_title.setText(title);
         read_context.setText(context);

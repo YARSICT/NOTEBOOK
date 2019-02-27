@@ -39,6 +39,7 @@ import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -105,6 +106,32 @@ public class Editor extends BaseActivity {
         initView();
         initToolbar();
         initEditor();
+        switch (isTheme()) {
+            case "red":
+                editText.setHighlightColor(getResources().getColor(R.color.red_tra));
+                editText1.setHighlightColor(getResources().getColor(R.color.red_tra));
+                break;
+            case "blue":
+                editText.setHighlightColor(getResources().getColor(R.color.blue_tra));
+                editText1.setHighlightColor(getResources().getColor(R.color.blue_tra));
+                break;
+            case "green":
+                editText.setHighlightColor(getResources().getColor(R.color.green_tra));
+                editText1.setHighlightColor(getResources().getColor(R.color.green_tra));
+                break;
+            case "orange":
+                editText.setHighlightColor(getResources().getColor(R.color.orange_tra));
+                editText1.setHighlightColor(getResources().getColor(R.color.orange_tra));
+                break;
+            case "purple":
+                editText.setHighlightColor(getResources().getColor(R.color.purple_tra));
+                editText1.setHighlightColor(getResources().getColor(R.color.purple_tra));
+                break;
+            case "night":
+                editText.setHighlightColor(getResources().getColor(R.color.night_tra));
+                editText1.setHighlightColor(getResources().getColor(R.color.night_tra));
+                break;
+        }
         SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
         String where = sharedPreferences.getString("where", "");
         if (where.equals("read")) {
@@ -155,6 +182,15 @@ public class Editor extends BaseActivity {
 
             }
         });
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    editText.setTextIsSelectable(true);
+                    showKeyBoard(Editor.this, editText);
+                }
+            }
+        });
         actionButton1.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
             @Override
@@ -185,6 +221,12 @@ public class Editor extends BaseActivity {
                 }
             }
         });
+    }
+
+    public static void showKeyBoard(Context context, View view) {
+        if (context == null) return;
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_FORCED);
     }
 
     private void initToolbar() {
@@ -434,7 +476,7 @@ public class Editor extends BaseActivity {
             Intent intent = new Intent(Editor.this, MainActivity.class);
             startActivity(intent);
             finish();
-            overridePendingTransition(R.anim.fade,R.anim.fade_exit);
+            overridePendingTransition(R.anim.fade, R.anim.fade_exit);
         }
         return false;
     }
