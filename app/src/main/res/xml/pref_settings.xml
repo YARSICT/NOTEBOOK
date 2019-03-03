@@ -14,7 +14,8 @@ Copyright 2018 YARSICT
         See the License for the specific language governing permissions and
         limitations under the License.
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="通用">
         <ListPreference
@@ -31,6 +32,34 @@ Copyright 2018 YARSICT
             android:key="list_ui"
             android:summary="设置便签的布局方式"
             android:title="布局样式" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="阅读">
+
+        <ListPreference
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="true"
+            android:entries="@array/read_bg"
+            android:entryValues="@array/read_bg_values"
+            android:key="read_bg"
+            android:summary="设置阅读界面的背景颜色"
+            android:title="阅读背景" />
+        <ListPreference
+            android:defaultValue="20"
+            android:entries="@array/read_text_size"
+            android:entryValues="@array/read_text_size_values"
+            android:key="read_textsize"
+            android:summary="调整阅读界面的字体大小"
+            android:title="字体大小" />
+        <ListPreference
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="#000000"
+            android:entries="@array/read_text_color"
+            android:entryValues="@array/read_text_color_values"
+            android:key="read_textcolor"
+            android:summary="设置阅读界面的字体颜色"
+            android:title="字体颜色" />
     </PreferenceCategory>
     <PreferenceCategory android:title="开源">
         <Preference

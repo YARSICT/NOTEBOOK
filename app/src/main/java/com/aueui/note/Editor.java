@@ -132,7 +132,7 @@ public class Editor extends BaseActivity {
                 editText1.setHighlightColor(getResources().getColor(R.color.night_tra));
                 break;
         }
-        SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
         String where = sharedPreferences.getString("where", "");
         if (where.equals("read")) {
             Intent intent = getIntent();
@@ -195,10 +195,10 @@ public class Editor extends BaseActivity {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View view) {
-                SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
                 Boolean isexpand = sharedPreferences.getBoolean("fab_expand", false);
                 if (!isexpand) {
-                    SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
                     editor.putBoolean("fab_expand", true);
                     editor.apply();
                     TranslateAnimation mShowAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
@@ -209,7 +209,7 @@ public class Editor extends BaseActivity {
 
                     actionButton.setVisibility(View.VISIBLE);
                 } else {
-                    SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
                     editor.putBoolean("fab_expand", false);
                     editor.apply();
                     TranslateAnimation mShowAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
@@ -256,7 +256,7 @@ public class Editor extends BaseActivity {
                             notes notes = new notes();
                             note_text = editText.getText().toString();
                             note_titles = note_title.getText().toString();
-                            SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+                            SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
                             String where = sharedPreferences.getString("where", "");
                             switch (where) {
                                 case "MainActivity":
@@ -280,7 +280,7 @@ public class Editor extends BaseActivity {
                                     notes.save();
                                     break;
                             }
-                            SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+                            SharedPreferences.Editor editor = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
                             editor.putString("isCommit", "commit");
                             editor.apply();
                             FileOutputStream out = null;
@@ -399,15 +399,15 @@ public class Editor extends BaseActivity {
 
     protected void onDestroy() {
         super.onDestroy();
-        SharedPreferences.Editor editor_fab = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor_fab = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
         editor_fab.putBoolean("fab_expand", false);
         editor_fab.apply();
         String input = editText.getText().toString();
         String titles = editText1.getText().toString();
-        SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
         String isCommit = sharedPreferences.getString("isCommit", "");
         if (isCommit.equals("commit")) {
-            SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+            SharedPreferences.Editor editor = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
             editor.putString("isCommit", "uncommit");
             editor.apply();
         } else {

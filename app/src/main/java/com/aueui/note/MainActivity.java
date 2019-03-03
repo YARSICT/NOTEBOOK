@@ -115,7 +115,7 @@ public class MainActivity extends BaseActivity
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-            SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
             String list_ui = sharedPreferences.getString("list_ui", "list");
             final ViewHolder holder;
             View view;
@@ -260,7 +260,7 @@ public class MainActivity extends BaseActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Editor.class);
-                SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
                 editor.putString("where", "MainActivity");
                 editor.apply();
                 startActivity(intent);
@@ -268,7 +268,7 @@ public class MainActivity extends BaseActivity
                 overridePendingTransition(R.anim.fade, R.anim.fade_exit);
             }
         });
-        SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
         String list_ui = sharedPreferences.getString("list_ui", "list");
         if (list_ui.equals("list")) {
             LinearLayoutManager LayoutManager = new LinearLayoutManager(this);
@@ -367,22 +367,22 @@ public class MainActivity extends BaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
         Boolean isChecked = sharedPreferences.getBoolean("isNight", false);
         if (id == R.id.nav_day_night_switch) {
 
             if (!isChecked) {
 
-                SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
                 editor.putString("theme_items", "night");
                 editor.putString("theme_items_now", isTheme());
                 editor.putBoolean("isNight", true);
                 editor.apply();
                 Toast.makeText(MainActivity.this, "夜间模式", Toast.LENGTH_SHORT).show();
             } else {
-                SharedPreferences sharedPreferencess = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+                SharedPreferences sharedPreferencess = getSharedPreferences(SP_NAME, MODE_PRIVATE);
                 String theme_now_resume = sharedPreferencess.getString("theme_items_now", "");
-                SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
                 editor.putString("theme_items", theme_now_resume);
                 editor.putBoolean("isNight", false);
                 editor.apply();

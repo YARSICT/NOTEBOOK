@@ -18,6 +18,7 @@ package com.aueui.note;
 import android.animation.Animator;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,6 +27,8 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.aueui.note.utils.StatusBarUtils;
 
 
 public class Reader extends BaseActivity {
@@ -46,7 +49,7 @@ public class Reader extends BaseActivity {
                 Intent intent1 = new Intent(Reader.this, Editor.class);
                 intent1.putExtra("title", title);
                 intent1.putExtra("context", context);
-                SharedPreferences.Editor editor = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
                 editor.putString("where", "read");
                 editor.apply();
                 startActivity(intent1);
@@ -80,6 +83,18 @@ public class Reader extends BaseActivity {
         read_title.setText(title);
         read_context.setText(context);
         read_date.setText(date);
+        StatusBarUtils.StatusBarTransMode(this);
+        switch (isBg()) {
+            case "blue":
+                linearLayout.setBackgroundResource(R.drawable.read_gradient);
+                break;
+            case "white":
+                linearLayout.setBackgroundResource(R.drawable.read_white);
+                getWindow().setStatusBarColor(getResources().getColor(R.color.white));
+                break;
+        }
+        read_context.setTextSize(Integer.parseInt(isTextSize()));
+        read_context.setTextColor(Color.parseColor(isTextColor()));
     }
 
     private void shareText(String Title, String subject, String content) {
@@ -116,4 +131,20 @@ public class Reader extends BaseActivity {
         }
         return false;
     }
+
+    public String isBg() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
+        return sharedPreferences.getString("read_bg", "");
+    }
+
+    public String isTextSize() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
+        return sharedPreferences.getString("read_textsize", "20");
+    }
+
+    public String isTextColor() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
+        return sharedPreferences.getString("read_textcolor", "#000000");
+    }
+
 }

@@ -24,7 +24,7 @@ public class BaseActivity extends AppCompatActivity {
     public static int Theme_all;
     public int CurrentTheme;
     public int toolbarcolor = R.color.red;
-
+    public final static String SP_NAME = "com.aueui.note_preferences";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public String isTheme() {
-        SharedPreferences sharedPreferences = getSharedPreferences("com.aueui.note_preferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
         String theme_now = sharedPreferences.getString("theme_items", "");
         return theme_now;
     }
