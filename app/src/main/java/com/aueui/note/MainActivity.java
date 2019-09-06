@@ -233,7 +233,6 @@ public class MainActivity extends BaseActivity
         if (isTheme().equals("red")) {
             toolbarcolor = R.color.red;
             getWindow().setStatusBarColor(getResources().getColor(R.color.red));
-
         }
         if (isTheme().equals("orange")) {
             toolbarcolor = R.color.orange;
@@ -250,7 +249,18 @@ public class MainActivity extends BaseActivity
         if (isTheme().equals("night")) {
             toolbarcolor = R.color.night;
             getWindow().setStatusBarColor(getResources().getColor(R.color.night));
-
+        }
+        if (isTheme().equals("pure_white")) {
+            toolbarcolor = R.color.pure_white;
+            getWindow().setStatusBarColor(getResources().getColor(R.color.pure_white));
+        }
+        if (isTheme().equals("pure_blue")) {
+            toolbarcolor = R.color.blue;
+            getWindow().setStatusBarColor(getResources().getColor(R.color.blue));
+        }
+        if (isTheme().equals("pure_red")) {
+            toolbarcolor = R.color.red;
+            getWindow().setStatusBarColor(getResources().getColor(R.color.red));
         }
         setContentView(R.layout.activity_main);
         initView();
@@ -310,6 +320,17 @@ public class MainActivity extends BaseActivity
         if (isTheme().equals("purple")) {
             constraintLayout.setBackgroundResource(R.drawable.purple_gradient);
         }
+        if (isTheme().equals("pure_white")) {
+            constraintLayout.setBackgroundResource(R.color.pure_white);
+            toolbar.setTitleTextColor(getResources().getColor(R.color.blue));
+        }
+        if (isTheme().equals("pure_blue")) {
+            constraintLayout.setBackgroundResource(R.color.blue);
+        }
+        if (isTheme().equals("pure_red")) {
+            constraintLayout.setBackgroundResource(R.color.red);
+        }
+
 
     }
 

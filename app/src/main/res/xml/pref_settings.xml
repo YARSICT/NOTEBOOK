@@ -85,7 +85,7 @@ Copyright 2018 YARSICT
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:key="web"
-            android:summary="https://aueui.yarsict.top"
+            android:summary="https://aueui.icoc.bz"
             android:title="官方网站" />
     </PreferenceCategory>
 </PreferenceScreen>

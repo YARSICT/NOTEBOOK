@@ -20,7 +20,7 @@ Copyright 2018 YARSICT
     android:id="@+id/con_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C2C2C2">
+    android:background="#EDEDED">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/editor_toolbar"
@@ -48,6 +48,7 @@ Copyright 2018 YARSICT
         android:inputType="textMultiLine"
         android:textColor="#000000"
         android:textColorHighlight="@color/red_tra"
+        android:textColorHint="#80000000"
         android:textCursorDrawable="@drawable/editor_cursor"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +70,7 @@ Copyright 2018 YARSICT
         android:inputType="textMultiLine"
         android:maxLength="32"
         android:textColor="#000000"
+        android:textColorHint="#80000000"
         android:textCursorDrawable="@drawable/editor_cursor"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
