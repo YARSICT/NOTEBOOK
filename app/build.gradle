@@ -6,8 +6,8 @@ android {
         applicationId "com.aueui.note"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.2.0"
+        versionCode 5
+        versionName "1.2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
