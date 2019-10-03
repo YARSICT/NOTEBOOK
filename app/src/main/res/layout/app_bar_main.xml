@@ -31,6 +31,7 @@ Copyright 2018 YARSICT
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/toolbar_color"
+            android:elevation="0dp"
             app:popupTheme="@android:color/background_light" />
 
     </android.support.design.widget.AppBarLayout>

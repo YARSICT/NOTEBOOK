@@ -20,6 +20,8 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -322,7 +324,10 @@ public class MainActivity extends BaseActivity
         }
         if (isTheme().equals("pure_white")) {
             constraintLayout.setBackgroundResource(R.color.pure_white);
-            toolbar.setTitleTextColor(getResources().getColor(R.color.blue));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.black));
+            Resources resource= getBaseContext().getResources();
+            ColorStateList csl= resource.getColorStateList(R.color.color_state);
+            fab.setBackgroundTintList(csl);
         }
         if (isTheme().equals("pure_blue")) {
             constraintLayout.setBackgroundResource(R.color.blue);

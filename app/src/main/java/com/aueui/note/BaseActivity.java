@@ -62,13 +62,13 @@ public class BaseActivity extends AppCompatActivity {
             setAllTheme(R.style.night);
         }
         if (isTheme().equals("pure_white")) {
-            setAllTheme(R.style.night);
+            setAllTheme(R.style.pure_white);
         }
         if (isTheme().equals("pure_blue")) {
-            setAllTheme(R.style.night);
+            setAllTheme(R.style.pure_blue);
         }
         if (isTheme().equals("pure_red")) {
-            setAllTheme(R.style.night);
+            setAllTheme(R.style.pure_red);
         }
     }
 
