@@ -123,9 +123,14 @@ public class MainActivity extends BaseActivity
             View view;
             if (list_ui.equals("list")) {
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style, viewGroup, false);
-
+                if (isTheme().equals("pure_white")) {
+                    view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style_white_normal, viewGroup, false);
+                }
             } else {
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style2, viewGroup, false);
+                if (isTheme().equals("pure_white")) {
+                    view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style_white_staggered, viewGroup, false);
+                }
             }
             holder = new ViewHolder(view);
             holder.Notesview.setOnClickListener(new View.OnClickListener() {
@@ -228,6 +233,9 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, isTheme());
+        toolbarcolor = R.color.pure_white;
+        getWindow().setStatusBarColor(getResources().getColor(R.color.pure_white));
+
         if (isTheme().equals("blue")) {
             toolbarcolor = R.color.blue;
             getWindow().setStatusBarColor(getResources().getColor(R.color.blue));
@@ -255,6 +263,7 @@ public class MainActivity extends BaseActivity
         if (isTheme().equals("pure_white")) {
             toolbarcolor = R.color.pure_white;
             getWindow().setStatusBarColor(getResources().getColor(R.color.pure_white));
+
         }
         if (isTheme().equals("pure_blue")) {
             toolbarcolor = R.color.blue;
@@ -299,41 +308,61 @@ public class MainActivity extends BaseActivity
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        constraintLayout.setBackgroundResource(R.color.pure_white);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.black));
+        Resources resource = getBaseContext().getResources();
+        ColorStateList csl = resource.getColorStateList(R.color.color_state);
+        fab.setBackgroundTintList(csl);
+        toolbar.setNavigationIcon(null);
+        toolbar.setTitleMarginStart(100);
+
         if (isTheme().equals("night")) {
             navigationView.getMenu().findItem(R.id.nav_day_night_switch).setTitle("正常模式");
             navigationView.getMenu().findItem(R.id.nav_day_night_switch).setIcon(R.drawable.day);
             constraintLayout.setBackgroundColor(getResources().getColor(R.color.night));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         } else {
             navigationView.getMenu().findItem(R.id.nav_day_night_switch).setTitle("夜间模式");
+
 
         }
         if (isTheme().equals("blue")) {
             constraintLayout.setBackgroundResource(R.drawable.blue_gradient);
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         }
         if (isTheme().equals("red")) {
             constraintLayout.setBackgroundResource(R.drawable.red_gradient);
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         }
         if (isTheme().equals("orange")) {
             constraintLayout.setBackgroundResource(R.drawable.orange_gradient);
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         }
         if (isTheme().equals("green")) {
             constraintLayout.setBackgroundResource(R.drawable.green_gradient);
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         }
         if (isTheme().equals("purple")) {
             constraintLayout.setBackgroundResource(R.drawable.purple_gradient);
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         }
         if (isTheme().equals("pure_white")) {
             constraintLayout.setBackgroundResource(R.color.pure_white);
             toolbar.setTitleTextColor(getResources().getColor(R.color.black));
-            Resources resource= getBaseContext().getResources();
-            ColorStateList csl= resource.getColorStateList(R.color.color_state);
+            resource = getBaseContext().getResources();
+            csl = resource.getColorStateList(R.color.color_state);
             fab.setBackgroundTintList(csl);
+            toolbar.setNavigationIcon(null);
+            toolbar.setTitleMarginStart(100);
         }
         if (isTheme().equals("pure_blue")) {
             constraintLayout.setBackgroundResource(R.color.blue);
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         }
         if (isTheme().equals("pure_red")) {
             constraintLayout.setBackgroundResource(R.color.red);
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         }
 
 

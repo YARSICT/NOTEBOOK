@@ -19,8 +19,8 @@ Copyright 2018 YARSICT
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@drawable/round_btn2"
-    android:elevation="1dip"
+    android:background="@drawable/round_btn"
+    android:elevation="0dp"
     android:orientation="vertical">
 
     <TextView
@@ -30,7 +30,7 @@ Copyright 2018 YARSICT
         android:layout_margin="5dp"
         android:layout_weight="1"
         android:maxLines="1"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="22sp" />
 
     <TextView
@@ -40,6 +40,6 @@ Copyright 2018 YARSICT
         android:layout_margin="5dp"
         android:layout_weight="1"
         android:maxLines="5"
-        android:textColor="#FFFFFF" />
+        android:textColor="#000000" />
 
 </LinearLayout>

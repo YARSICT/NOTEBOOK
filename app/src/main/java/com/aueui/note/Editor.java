@@ -75,6 +75,8 @@ public class Editor extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toolbarcolor = R.color.pure_white;
+        getWindow().setStatusBarColor(getResources().getColor(R.color.pure_white));
         switch (isTheme()) {
             case "red":
                 toolbarcolor = R.color.red;
@@ -99,6 +101,18 @@ public class Editor extends BaseActivity {
             case "night":
                 toolbarcolor = R.color.night;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.night));
+                break;
+            case "pure_white":
+                toolbarcolor = R.color.pure_white;
+                getWindow().setStatusBarColor(getResources().getColor(R.color.pure_white));
+                break;
+            case "pure_blue":
+                toolbarcolor = R.color.blue;
+                getWindow().setStatusBarColor(getResources().getColor(R.color.blue));
+                break;
+            case "pure_red":
+                toolbarcolor = R.color.red;
+                getWindow().setStatusBarColor(getResources().getColor(R.color.red));
                 break;
         }
         setContentView(R.layout.editor);

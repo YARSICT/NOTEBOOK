@@ -20,7 +20,7 @@ Copyright 2018 YARSICT
     android:id="@+id/con_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EDEDED">
+    android:background="@color/pure_white">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/editor_toolbar"
