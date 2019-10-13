@@ -23,7 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
     public static int Theme_all;
     public int CurrentTheme;
-    public int toolbarcolor = R.color.red;
+    public int toolbarcolor = R.color.pure_white;
     public final static String SP_NAME = "com.aueui.note_preferences";
 
     @Override
