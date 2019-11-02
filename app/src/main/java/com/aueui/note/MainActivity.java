@@ -15,7 +15,6 @@
  */
 package com.aueui.note;
 
-import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,9 +39,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -378,7 +375,7 @@ public class MainActivity extends BaseActivity
 
     private void initView() {
         constraintLayout = findViewById(R.id.main_constrain);
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.about_toolbar);
         rv = findViewById(R.id.notes_items);
         setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(getResources().getColor(toolbarcolor));

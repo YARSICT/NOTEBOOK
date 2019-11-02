@@ -18,21 +18,54 @@ package com.aueui.note;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
-import android.widget.Button;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.Objects;
 
 public class About extends BaseActivity {
+    android.support.v7.widget.Toolbar about_toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toolbarcolor = R.color.pure_white;
         setContentView(R.layout.about);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        about_toolbar = findViewById(R.id.about_toolbar);
+        setSupportActionBar(about_toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        initToolbar();
+        getFragmentManager()
+                .beginTransaction()
+                .commit();
+
         if (isTheme().equals("night")) {
+
             initView();
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
+        return true;
+
+
+    }
+    private void initToolbar() {
+        about_toolbar.setTitle("");
+        setSupportActionBar(about_toolbar);
 
     }
 
@@ -41,10 +74,12 @@ public class About extends BaseActivity {
         TextView textView = findViewById(R.id.about_name);
         TextView textView1 = findViewById(R.id.about_info);
         TextView textView2 = findViewById(R.id.about_us);
+        TextView textView3 = findViewById(R.id.toolbar_title);
         constraintLayout.setBackgroundColor(getResources().getColor(R.color.night));
         textView.setTextColor(getResources().getColor(R.color.white));
         textView1.setTextColor(getResources().getColor(R.color.white));
         textView2.setTextColor(getResources().getColor(R.color.white));
+        textView3.setTextColor(getResources().getColor(R.color.white));
         getWindow().setStatusBarColor(getResources().getColor(R.color.night));
     }
     @Override

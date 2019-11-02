@@ -29,7 +29,7 @@ Copyright 2018 YARSICT
         app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/about_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/toolbar_color"

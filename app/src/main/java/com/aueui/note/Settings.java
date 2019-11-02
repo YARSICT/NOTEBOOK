@@ -19,7 +19,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +35,7 @@ public class Settings extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        setting_toolbar= findViewById(R.id.toolbar);
+        setting_toolbar= findViewById(R.id.about_toolbar);
         setSupportActionBar(setting_toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         initToolbar();
@@ -58,6 +57,7 @@ public class Settings extends BaseActivity {
         }
         return true;
     }
+
     private void initToolbar() {
         setting_toolbar.setTitle("设置");
         setting_toolbar.setTitleTextColor(getResources().getColor(R.color.white));

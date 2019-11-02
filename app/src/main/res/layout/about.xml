@@ -7,10 +7,34 @@
     android:layout_height="match_parent"
     android:background="@color/pure_white">
 
+<LinearLayout
+    android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/about_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:paddingTop="10dp"
+        app:navigationIcon="@mipmap/tools_back">
+
+        <TextView
+            android:id="@id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text="关于"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+    </android.support.v7.widget.Toolbar>
+</LinearLayout>
+
     <Button
         android:id="@+id/about_logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="116dp"
         android:layout_marginEnd="8dp"
@@ -53,9 +77,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="125dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="2dp"
         android:autoLink="web"
         android:gravity="center"
         android:text="@string/about_info"
