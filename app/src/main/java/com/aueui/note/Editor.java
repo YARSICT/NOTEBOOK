@@ -144,6 +144,7 @@ public class Editor extends BaseActivity {
             case "night":
                 editText.setHighlightColor(getResources().getColor(R.color.night_tra));
                 editText1.setHighlightColor(getResources().getColor(R.color.night_tra));
+
                 break;
         }
         SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
@@ -245,7 +246,11 @@ public class Editor extends BaseActivity {
 
     private void initToolbar() {
         android.support.v7.widget.Toolbar editor_toolbar = findViewById(R.id.editor_toolbar);
-        editor_toolbar.inflateMenu(R.menu.editor_toolbar);
+        if (isTheme().equals("pure_white")) {
+            editor_toolbar.inflateMenu(R.menu.editor_toolbar);
+        } else {
+            editor_toolbar.inflateMenu(R.menu.editor_toolbar_white);
+        }
         editor_toolbar.setBackgroundColor(getResources().getColor(toolbarcolor));
         editor_toolbar.setOnMenuItemClickListener(new android.support.v7.widget.Toolbar.OnMenuItemClickListener() {
             @Override
@@ -258,8 +263,8 @@ public class Editor extends BaseActivity {
                         performEdit.redo();
                         break;
                     case R.id.go:
-                        EditText note_context = (EditText) findViewById(R.id.note_context);
-                        EditText note_title = (EditText) findViewById(R.id.note_title);
+                        EditText note_context = findViewById(R.id.note_context);
+                        EditText note_title = findViewById(R.id.note_title);
                         if (TextUtils.isEmpty(note_context.getText()) && TextUtils.isEmpty(note_title.getText())) {
                             Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "内容不能为空", Snackbar.LENGTH_LONG);
                             snackbar.show();

@@ -32,7 +32,7 @@ Copyright 2018 YARSICT
             android:layout_height="60dp"
             android:background="@drawable/red_gradient1"
             android:paddingTop="5dp"
-            app:navigationIcon="@mipmap/tools_back"
+
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         <FrameLayout
