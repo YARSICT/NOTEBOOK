@@ -72,14 +72,16 @@ public class About extends BaseActivity {
     private void initView() {
         ConstraintLayout constraintLayout = findViewById(R.id.about_layout);
         TextView textView = findViewById(R.id.about_name);
-        TextView textView1 = findViewById(R.id.about_info);
+        TextView textView1 = findViewById(R.id.about_link);
         TextView textView2 = findViewById(R.id.about_us);
         TextView textView3 = findViewById(R.id.toolbar_title);
+        TextView textView4 = findViewById(R.id.about_info);
         constraintLayout.setBackgroundColor(getResources().getColor(R.color.night));
         textView.setTextColor(getResources().getColor(R.color.white));
         textView1.setTextColor(getResources().getColor(R.color.white));
         textView2.setTextColor(getResources().getColor(R.color.white));
         textView3.setTextColor(getResources().getColor(R.color.white));
+        textView4.setTextColor(getResources().getColor(R.color.white));
         getWindow().setStatusBarColor(getResources().getColor(R.color.night));
     }
     @Override

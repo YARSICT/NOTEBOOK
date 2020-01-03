@@ -7,37 +7,40 @@
     android:layout_height="match_parent"
     android:background="@color/pure_white">
 
-<LinearLayout
-    android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/about_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:paddingTop="10dp"
-        >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/about_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:fitsSystemWindows="true"
+            android:paddingTop="10dp">
 
-        <TextView
-            android:id="@id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:text="关于"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
-    </android.support.v7.widget.Toolbar>
-</LinearLayout>
+            <TextView
+                android:id="@id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="关于"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </android.support.v7.widget.Toolbar>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/about_logo"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="116dp"
         android:layout_marginEnd="8dp"
+        android:layout_gravity="center"
         android:background="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,28 +69,39 @@
         android:layout_marginEnd="8dp"
         android:text="@string/ABOUT_US"
         android:textColor="#585858"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/about_name" />
 
     <TextView
-        android:id="@+id/about_info"
+        android:id="@+id/about_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="125dp"
         android:layout_marginEnd="8dp"
-        android:autoLink="web"
-        android:gravity="center"
+        android:layout_marginBottom="45dp"
+        android:gravity="bottom|center"
         android:text="@string/about_info"
         android:textColor="#585858"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about_us"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/about_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="bottom|center"
+        android:text="@string/about_bq"
+        android:textColor="#585858"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

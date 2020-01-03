@@ -96,12 +96,14 @@ public class MainActivity extends BaseActivity
             View Notesview;
             TextView NotesContext;
             TextView NotesTitle;
+            TextView NotesTime;
 
             ViewHolder(View view) {
                 super(view);
                 Notesview = view;
                 NotesContext = view.findViewById(R.id.notes_context);
                 NotesTitle = view.findViewById(R.id.notes_title);
+                NotesTime = view.findViewById(R.id.notes_time);
 
             }
         }
@@ -210,6 +212,7 @@ public class MainActivity extends BaseActivity
             Notes Notes = mNoteslist.get(i);
             viewHolder.NotesContext.setText(Notes.getContext());
             viewHolder.NotesTitle.setText(Notes.getTitle());
+            viewHolder.NotesTime.setText(Notes.getDate());
 
         }
 
@@ -309,7 +312,7 @@ public class MainActivity extends BaseActivity
         constraintLayout.setBackgroundResource(R.color.pure_white);
         toolbar.setTitleTextColor(getResources().getColor(R.color.black));
         Resources resource = getBaseContext().getResources();
-        ColorStateList csl = resource.getColorStateList(R.color.color_state);
+        ColorStateList csl = resource.getColorStateList(R.color.color_s);
         fab.setBackgroundTintList(csl);
         toolbar.setNavigationIcon(null);
         toolbar.setTitleMarginStart(100);
@@ -348,7 +351,7 @@ public class MainActivity extends BaseActivity
             constraintLayout.setBackgroundResource(R.color.pure_white);
             toolbar.setTitleTextColor(getResources().getColor(R.color.black));
             resource = getBaseContext().getResources();
-            csl = resource.getColorStateList(R.color.color_state);
+            csl = resource.getColorStateList(R.color.color_s);
             fab.setBackgroundTintList(csl);
             toolbar.setNavigationIcon(null);
             toolbar.setTitleMarginStart(100);
