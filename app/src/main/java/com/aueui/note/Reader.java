@@ -89,6 +89,7 @@ public class Reader extends BaseActivity {
                 linearLayout.setBackgroundResource(R.drawable.read_gradient);
                 break;
             case "white":
+                read_date.setTextColor(getResources().getColor(R.color.black));
                 linearLayout.setBackgroundResource(R.drawable.read_white);
                 getWindow().setStatusBarColor(getResources().getColor(R.color.white));
                 break;
