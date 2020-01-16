@@ -20,7 +20,7 @@ Copyright 2018 YARSICT
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="16dp"
-    android:background="@drawable/read_gradient"
+    android:background="@drawable/read_white"
     android:orientation="vertical">
 
     <ScrollView
@@ -37,12 +37,12 @@ Copyright 2018 YARSICT
 
             <TextView
                 android:id="@+id/read_title"
-                android:layout_width="245dp"
-                android:layout_height="73dp"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="8dp"
+                android:layout_width="265dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
                 android:textColor="#000000"
-                android:textSize="25sp"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +50,7 @@ Copyright 2018 YARSICT
                 android:id="@+id/edit"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/editor"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@ Copyright 2018 YARSICT
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/share"
                 app:layout_constraintEnd_toStartOf="@+id/edit"
@@ -95,8 +95,38 @@ Copyright 2018 YARSICT
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/share" />
 
-
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
-</LinearLayout>
+    <!--<LinearLayout
+        android:id="@+id/read"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="485dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="bottom|center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/read_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/read_btn"
+            android:elevation="0dp"
+            android:gravity="bottom|center"
+            android:orientation="vertical">/>
+        </LinearLayout>
+        </LinearLayout>-->
+    </LinearLayout>
+
