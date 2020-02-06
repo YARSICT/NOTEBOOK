@@ -76,7 +76,8 @@ public class SettingsPreference extends PreferenceActivity {
             findPreference("code").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = new Intent(getActivity(), Source.class);
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW).setData(Uri.parse("https://github.com/aueui"));
                     startActivity(intent);
                     return true;
                 }
@@ -84,7 +85,8 @@ public class SettingsPreference extends PreferenceActivity {
             findPreference("permit").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = new Intent(getActivity(), License.class);
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW).setData(Uri.parse("http://www.apache.org/licenses/LICENSE-2.0.html"));
                     startActivity(intent);
                     return true;
                 }

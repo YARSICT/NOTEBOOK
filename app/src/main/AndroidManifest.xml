@@ -28,10 +28,6 @@ Copyright 2018 YARSICT
         android:supportsRtl="true"
         android:theme="@style/RED"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".License"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".Source"
-            android:parentActivityName=".MainActivity"/>
         <activity android:name=".Settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity"
@@ -56,6 +52,7 @@ Copyright 2018 YARSICT
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity$" />
     </application>
 
 </manifest>

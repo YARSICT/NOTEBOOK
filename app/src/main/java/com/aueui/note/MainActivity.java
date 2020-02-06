@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -122,11 +123,11 @@ public class MainActivity extends BaseActivity
             View view;
             if (list_ui.equals("list")) {
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style, viewGroup, false);
-                if (isTheme().equals("pure_white")) {
+            if (isTheme().equals("pure_white")) {
                     view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style_white_normal, viewGroup, false);
                 }
             } else {
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style2, viewGroup, false);
+                   view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style2, viewGroup, false);
                 if (isTheme().equals("pure_white")) {
                     view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style_white_staggered, viewGroup, false);
                 }
@@ -232,6 +233,9 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getWindow()
+        .getDecorView()
+        .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         Log.i(TAG, isTheme());
         toolbarcolor = R.color.pure_white;
         getWindow().setStatusBarColor(getResources().getColor(R.color.pure_white));
@@ -239,26 +243,32 @@ public class MainActivity extends BaseActivity
         if (isTheme().equals("blue")) {
             toolbarcolor = R.color.blue;
             getWindow().setStatusBarColor(getResources().getColor(R.color.blue));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         if (isTheme().equals("red")) {
             toolbarcolor = R.color.red;
             getWindow().setStatusBarColor(getResources().getColor(R.color.red));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         if (isTheme().equals("orange")) {
             toolbarcolor = R.color.orange;
             getWindow().setStatusBarColor(getResources().getColor(R.color.orange));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         if (isTheme().equals("green")) {
             toolbarcolor = R.color.green;
             getWindow().setStatusBarColor(getResources().getColor(R.color.green));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         if (isTheme().equals("purple")) {
             toolbarcolor = R.color.purple;
             getWindow().setStatusBarColor(getResources().getColor(R.color.purple));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         if (isTheme().equals("night")) {
             toolbarcolor = R.color.night;
             getWindow().setStatusBarColor(getResources().getColor(R.color.night));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         if (isTheme().equals("pure_white")) {
             toolbarcolor = R.color.pure_white;
@@ -268,10 +278,12 @@ public class MainActivity extends BaseActivity
         if (isTheme().equals("pure_blue")) {
             toolbarcolor = R.color.blue;
             getWindow().setStatusBarColor(getResources().getColor(R.color.blue));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         if (isTheme().equals("pure_red")) {
             toolbarcolor = R.color.red;
             getWindow().setStatusBarColor(getResources().getColor(R.color.red));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         setContentView(R.layout.activity_main);
         initView();
@@ -308,7 +320,6 @@ public class MainActivity extends BaseActivity
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         constraintLayout.setBackgroundResource(R.color.pure_white);
         toolbar.setTitleTextColor(getResources().getColor(R.color.black));
         Resources resource = getBaseContext().getResources();

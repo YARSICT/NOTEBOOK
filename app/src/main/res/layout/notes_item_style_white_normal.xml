@@ -20,7 +20,7 @@ Copyright 2018 YARSICT
     android:layout_height="wrap_content"
     android:layout_margin="13dp"
     android:background="@drawable/round_btn"
-    android:elevation="0dp"
+    android:elevation="1dip"
     android:orientation="vertical">
 
     <TextView

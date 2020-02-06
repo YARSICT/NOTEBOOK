@@ -25,16 +25,16 @@ Copyright 2018 YARSICT
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
-        android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/about_toolbar"
+            android:theme="@style/pure_white"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/toolbar_color"
             android:elevation="0dp"
-            app:popupTheme="@android:color/background_light" />
+            app:popupTheme="@style/pure_white" />
 
     </android.support.design.widget.AppBarLayout>
 

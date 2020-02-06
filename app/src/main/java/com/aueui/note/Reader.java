@@ -16,10 +16,13 @@
 package com.aueui.note;
 
 import android.animation.Animator;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -87,6 +90,7 @@ public class Reader extends BaseActivity {
         switch (isBg()) {
             case "blue":
                 linearLayout.setBackgroundResource(R.drawable.read_gradient);
+                getWindow().setStatusBarColor(getResources().getColor(R.color.read_gradient));
                 break;
             case "white":
                 read_date.setTextColor(getResources().getColor(R.color.black));
@@ -96,6 +100,29 @@ public class Reader extends BaseActivity {
         }
         read_context.setTextSize(Integer.parseInt(isTextSize()));
         read_context.setTextColor(Color.parseColor(isTextColor()));
+        Button Button1 = findViewById(R.id.delete);
+        Button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Reader.this);
+                builder.setTitle("删除");
+                builder.setMessage("确认删除本条记事吗？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.show();
+
+            }
+        });
     }
 
     private void shareText(String Title, String subject, String content) {

@@ -18,16 +18,18 @@ package com.aueui.note;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -44,7 +46,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.aueui.note.write.notes;
 
@@ -64,6 +65,8 @@ import java.util.List;
 
 import ren.qinc.edit.PerformEdit;
 
+import static com.aueui.note.R.menu.editor_toolbar;
+
 
 public class Editor extends BaseActivity {
 
@@ -75,32 +78,41 @@ public class Editor extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getWindow()
+                .getDecorView()
+                .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         toolbarcolor = R.color.pure_white;
         getWindow().setStatusBarColor(getResources().getColor(R.color.pure_white));
         switch (isTheme()) {
             case "red":
                 toolbarcolor = R.color.red;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.red));
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 break;
             case "blue":
                 toolbarcolor = R.color.blue;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.blue));
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 break;
             case "green":
                 toolbarcolor = R.color.green;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.green));
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 break;
             case "orange":
                 toolbarcolor = R.color.orange;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.orange));
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 break;
             case "purple":
                 toolbarcolor = R.color.purple;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.purple));
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 break;
             case "night":
                 toolbarcolor = R.color.night;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.night));
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 break;
             case "pure_white":
                 toolbarcolor = R.color.pure_white;
@@ -109,10 +121,12 @@ public class Editor extends BaseActivity {
             case "pure_blue":
                 toolbarcolor = R.color.blue;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.blue));
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 break;
             case "pure_red":
                 toolbarcolor = R.color.red;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.red));
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 break;
         }
         setContentView(R.layout.editor);
@@ -169,6 +183,8 @@ public class Editor extends BaseActivity {
 
     }
 
+   
+
     private void initView() {
         editText = findViewById(R.id.note_context);
         editText1 = findViewById(R.id.note_title);
@@ -177,7 +193,7 @@ public class Editor extends BaseActivity {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(Editor.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Editor.this);
                 builder.setTitle("清空所有内容");
                 builder.setMessage("确认删除所有内容吗");
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -244,13 +260,23 @@ public class Editor extends BaseActivity {
         inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_FORCED);
     }
 
+
     private void initToolbar() {
         android.support.v7.widget.Toolbar editor_toolbar = findViewById(R.id.editor_toolbar);
+
         if (isTheme().equals("pure_white")) {
             editor_toolbar.inflateMenu(R.menu.editor_toolbar);
         } else {
             editor_toolbar.inflateMenu(R.menu.editor_toolbar_white);
         }
+        Button btn_back = findViewById(R.id.editor_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(Editor.this, MainActivity.class));
+            }
+        });
         editor_toolbar.setBackgroundColor(getResources().getColor(toolbarcolor));
         editor_toolbar.setOnMenuItemClickListener(new android.support.v7.widget.Toolbar.OnMenuItemClickListener() {
             @Override
@@ -499,6 +525,5 @@ public class Editor extends BaseActivity {
         }
         return false;
     }
+
 }
-
-
