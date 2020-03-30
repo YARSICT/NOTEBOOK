@@ -22,6 +22,7 @@ import android.support.annotation.RequiresApi;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.Objects;
 
@@ -35,9 +36,17 @@ public class Settings extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        setting_toolbar= findViewById(R.id.setting_toolbar);
+        Button btn_back = findViewById(R.id.settings_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(Settings.this, MainActivity.class));
+            }
+        });
+        setting_toolbar= findViewById(R.id.settings_toolbar);
         setSupportActionBar(setting_toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
         initToolbar();
         getFragmentManager()
                 .beginTransaction()
@@ -59,18 +68,8 @@ public class Settings extends BaseActivity {
     }
 
     private void initToolbar() {
-        setting_toolbar.setTitle("设置");
+        setting_toolbar.setTitle("");
         setting_toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(setting_toolbar);
 
-    }
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Intent intent = new Intent(Settings.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        return false;
-    }
-}
+    }}

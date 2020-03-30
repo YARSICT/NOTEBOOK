@@ -32,6 +32,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aueui.note.utils.StatusBarUtils;
+import com.aueui.note.write.notes;
+
+import org.litepal.LitePal;
 
 
 public class Reader extends BaseActivity {
@@ -110,7 +113,11 @@ public class Reader extends BaseActivity {
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        LitePal.deleteAll(notes.class, "notes_context = ? and notes_title = ?", read_context.getText().toString(), read_title.getText().toString());
+                        Intent intent = new Intent(Reader.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fade, R.anim.fade_exit);
                     }
                 });
                 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -174,5 +181,4 @@ public class Reader extends BaseActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, MODE_PRIVATE);
         return sharedPreferences.getString("read_textcolor", "#000000");
     }
-
 }

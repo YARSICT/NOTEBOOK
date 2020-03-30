@@ -45,6 +45,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextClock;
 import android.widget.Toast;
 
 import com.aueui.note.write.notes;
@@ -84,48 +85,9 @@ public class Editor extends BaseActivity {
         toolbarcolor = R.color.pure_white;
         getWindow().setStatusBarColor(getResources().getColor(R.color.pure_white));
         switch (isTheme()) {
-            case "red":
-                toolbarcolor = R.color.red;
-                getWindow().setStatusBarColor(getResources().getColor(R.color.red));
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-                break;
-            case "blue":
-                toolbarcolor = R.color.blue;
-                getWindow().setStatusBarColor(getResources().getColor(R.color.blue));
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-                break;
-            case "green":
-                toolbarcolor = R.color.green;
-                getWindow().setStatusBarColor(getResources().getColor(R.color.green));
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-                break;
-            case "orange":
-                toolbarcolor = R.color.orange;
-                getWindow().setStatusBarColor(getResources().getColor(R.color.orange));
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-                break;
-            case "purple":
-                toolbarcolor = R.color.purple;
-                getWindow().setStatusBarColor(getResources().getColor(R.color.purple));
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-                break;
             case "night":
                 toolbarcolor = R.color.night;
                 getWindow().setStatusBarColor(getResources().getColor(R.color.night));
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-                break;
-            case "pure_white":
-                toolbarcolor = R.color.pure_white;
-                getWindow().setStatusBarColor(getResources().getColor(R.color.pure_white));
-                break;
-            case "pure_blue":
-                toolbarcolor = R.color.blue;
-                getWindow().setStatusBarColor(getResources().getColor(R.color.blue));
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-                break;
-            case "pure_red":
-                toolbarcolor = R.color.red;
-                getWindow().setStatusBarColor(getResources().getColor(R.color.red));
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 break;
         }
@@ -135,26 +97,6 @@ public class Editor extends BaseActivity {
         initToolbar();
         initEditor();
         switch (isTheme()) {
-            case "red":
-                editText.setHighlightColor(getResources().getColor(R.color.red_tra));
-                editText1.setHighlightColor(getResources().getColor(R.color.red_tra));
-                break;
-            case "blue":
-                editText.setHighlightColor(getResources().getColor(R.color.blue_tra));
-                editText1.setHighlightColor(getResources().getColor(R.color.blue_tra));
-                break;
-            case "green":
-                editText.setHighlightColor(getResources().getColor(R.color.green_tra));
-                editText1.setHighlightColor(getResources().getColor(R.color.green_tra));
-                break;
-            case "orange":
-                editText.setHighlightColor(getResources().getColor(R.color.orange_tra));
-                editText1.setHighlightColor(getResources().getColor(R.color.orange_tra));
-                break;
-            case "purple":
-                editText.setHighlightColor(getResources().getColor(R.color.purple_tra));
-                editText1.setHighlightColor(getResources().getColor(R.color.purple_tra));
-                break;
             case "night":
                 editText.setHighlightColor(getResources().getColor(R.color.night_tra));
                 editText1.setHighlightColor(getResources().getColor(R.color.night_tra));
@@ -181,13 +123,27 @@ public class Editor extends BaseActivity {
             }
         }
 
+        if (isTheme().equals("night")) {
+            ConstraintLayout constraintLayout = findViewById(R.id.editor);
+            Button button = findViewById(R.id.editor_back);
+            EditText textView1 = findViewById(R.id.note_title);
+            EditText textView2 = findViewById(R.id.note_context);
+            constraintLayout.setBackgroundColor(getResources().getColor(R.color.night));
+            button.setBackground(getResources().getDrawable(R.drawable.back_white));
+            textView1.setTextColor(getResources().getColor(R.color.white));
+            textView1.setHintTextColor(getResources().getColor(R.color.editor));
+            textView2.setTextColor(getResources().getColor(R.color.white));
+            textView2.setHintTextColor(getResources().getColor(R.color.editor));
+        }
+
     }
 
-   
+
 
     private void initView() {
         editText = findViewById(R.id.note_context);
         editText1 = findViewById(R.id.note_title);
+
         final FloatingActionButton actionButton = findViewById(R.id.editor_reset);
         FloatingActionButton actionButton1 = findViewById(R.id.editor_fab);
         actionButton.setOnClickListener(new View.OnClickListener() {
@@ -262,13 +218,15 @@ public class Editor extends BaseActivity {
 
 
     private void initToolbar() {
-        android.support.v7.widget.Toolbar editor_toolbar = findViewById(R.id.editor_toolbar);
+        Toolbar editor_toolbar = findViewById(R.id.editor_toolbar);
 
-        if (isTheme().equals("pure_white")) {
-            editor_toolbar.inflateMenu(R.menu.editor_toolbar);
-        } else {
+        if (isTheme().equals("night") ){
             editor_toolbar.inflateMenu(R.menu.editor_toolbar_white);
-        }
+        } else {
+            editor_toolbar.inflateMenu(R.menu.editor_toolbar);
+
+
+}
         Button btn_back = findViewById(R.id.editor_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -278,7 +236,7 @@ public class Editor extends BaseActivity {
             }
         });
         editor_toolbar.setBackgroundColor(getResources().getColor(toolbarcolor));
-        editor_toolbar.setOnMenuItemClickListener(new android.support.v7.widget.Toolbar.OnMenuItemClickListener() {
+        editor_toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
@@ -526,4 +484,5 @@ public class Editor extends BaseActivity {
         return false;
     }
 
+  
 }

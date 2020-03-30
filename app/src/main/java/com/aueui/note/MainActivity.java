@@ -123,12 +123,12 @@ public class MainActivity extends BaseActivity
             View view;
             if (list_ui.equals("list")) {
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style, viewGroup, false);
-            if (isTheme().equals("pure_white")) {
+                if (isTheme().equals("pure_white") || isTheme().equals("")) {
                     view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style_white_normal, viewGroup, false);
                 }
             } else {
-                   view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style2, viewGroup, false);
-                if (isTheme().equals("pure_white")) {
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style2, viewGroup, false);
+                if (isTheme().equals("pure_white") || isTheme().equals("")) {
                     view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.notes_item_style_white_staggered, viewGroup, false);
                 }
             }
@@ -234,8 +234,8 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getWindow()
-        .getDecorView()
-        .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                .getDecorView()
+                .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         Log.i(TAG, isTheme());
         toolbarcolor = R.color.pure_white;
         getWindow().setStatusBarColor(getResources().getColor(R.color.pure_white));

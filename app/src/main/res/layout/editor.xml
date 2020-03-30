@@ -1,106 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?><!--
 Copyright 2018 YARSICT
-
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
         You may obtain a copy of the License at
-
         http://www.apache.org/licenses/LICENSE-2.0
-
         Unless required by applicable law or agreed to in writing, software
         distributed under the License is distributed on an "AS IS" BASIS,
         WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
         See the License for the specific language governing permissions and
         limitations under the License.
 -->
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/con_root"
+    android:id="@+id/editor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pure_white">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/editor_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/pure_white"
-        android:fitsSystemWindows="true"
-        android:paddingTop="10dp"
-        tools:ignore="MissingConstraints" />
-    <Button
-        android:id="@+id/editor_back"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
-        android:background="@drawable/back"
-        app:layout_constraintBottom_toBottomOf="@+id/editor_toolbar"
-        app:layout_constraintStart_toStartOf="@+id/editor_toolbar"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/editor_toolbar"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextClock
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:format12Hour="MM月dd日HH:mm EEEE aa"
-            android:textColor="@color/black"
-            tools:ignore="MissingConstraints" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/editor_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:paddingTop="10dp">
+
+            <Button
+                android:id="@+id/editor_back"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/back"
+                tools:ignore="MissingConstraints" />
+
+        </android.support.v7.widget.Toolbar>
 
     </LinearLayout>
 
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:id="@+id/editor_scro"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="90dp"
-        app:layout_constraintTop_toBottomOf="@+id/editor_toolbar"
+        android:fillViewport="true"
+        android:layout_marginTop="95dp"
         tools:ignore="MissingConstraints">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/note"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="#0000">
 
-
-            <EditText
-                android:id="@+id/note_title"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="top|center"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:background="#0000"
-                android:ems="10"
-                android:hint="@string/note_title"
-                android:inputType="textMultiLine"
-                android:maxLength="32"
-                android:textColor="#000000"
-                android:textColorHint="#80000000"
-                android:textCursorDrawable="@drawable/editor_cursor"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
             <EditText
                 android:id="@+id/note_context"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top|center"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_gravity="top"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
                 android:background="#0000"
                 android:cursorVisible="true"
                 android:ems="10"
@@ -114,39 +82,63 @@ Copyright 2018 YARSICT
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/note_title" />
+                app:layout_constraintTop_toBottomOf="@+id/note_title"
+                android:autofillHints="" />
 
-
+            <EditText
+                android:id="@+id/note_title"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="top"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="#0000"
+                android:ems="10"
+                android:hint="@string/note_title"
+                android:inputType="textMultiLine"
+                android:maxLength="32"
+                android:textColor="#000000"
+                android:textColorHint="#80000000"
+                android:textCursorDrawable="@drawable/editor_cursor"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:autofillHints="" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
 
-        <android.support.design.widget.FloatingActionButton
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/editor_fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/red"
+        android:clickable="true"
+        android:fillViewport="true"
+        app:backgroundTint="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/menu"
+        android:focusable="true" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/editor_reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="20dp"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
         android:background="@color/blue"
         android:clickable="true"
+        android:fillViewport="true"
         android:visibility="invisible"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toTopOf="@+id/editor_fab"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/reset" />
+        app:srcCompat="@drawable/reset_white"
+        android:focusable="true" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/editor_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:background="@color/red"
-        android:clickable="true"
-        app:backgroundTint="@color/red"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/menu" />
-</android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>

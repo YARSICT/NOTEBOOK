@@ -11,6 +11,7 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="night">#212121</color>
+    <color name="editor">#FF828282</color>
     <color name="read_gradient">#77A1D3</color>
     <color name="transparent">#00000000</color>
     <color name="blue_tra">#304bc0c8</color>
