@@ -27,7 +27,7 @@ Copyright 2018 YARSICT
         android:id="@+id/notes_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:layout_weight="1"
         android:maxLines="1"
         android:textColor="#FFFFFF"
@@ -37,7 +37,7 @@ Copyright 2018 YARSICT
         android:id="@+id/notes_context"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:layout_weight="1"
         android:maxLines="10"
         android:textColor="#FFFFFF" />
@@ -46,7 +46,7 @@ Copyright 2018 YARSICT
         android:id="@+id/notes_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:layout_weight="2"
         android:textColor="#FFFFFFFF"
         android:textSize="13sp"/>
