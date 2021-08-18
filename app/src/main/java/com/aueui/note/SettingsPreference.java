@@ -17,23 +17,17 @@ package com.aueui.note;
 
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.preference.SwitchPreference;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatDelegate;
-import android.view.KeyEvent;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import android.view.View;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.util.List;
 

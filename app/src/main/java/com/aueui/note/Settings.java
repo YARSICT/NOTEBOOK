@@ -18,8 +18,8 @@ package com.aueui.note;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.view.KeyEvent;
+import androidx.annotation.RequiresApi;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +28,7 @@ import java.util.Objects;
 
 
 public class Settings extends BaseActivity {
-    android.support.v7.widget.Toolbar setting_toolbar;
+    androidx.appcompat.widget.Toolbar setting_toolbar;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override

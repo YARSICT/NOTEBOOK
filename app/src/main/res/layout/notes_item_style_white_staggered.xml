@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 Copyright 2018 YARSICT
 
         Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,42 +13,55 @@ Copyright 2018 YARSICT
         See the License for the specific language governing permissions and
         limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/item_lay"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="13dp"
-    android:background="@drawable/round_btn"
-    android:elevation="0dp"
-    android:orientation="vertical">
+    android:alpha="30"
+    app:cardBackgroundColor="#ffffff"
+    app:cardCornerRadius="30dp"
+    app:cardElevation="10dp"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="false">
 
-    <TextView
-        android:id="@+id/notes_title"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/item_lay"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_weight="1"
-        android:maxLines="1"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        android:layout_margin="13dp"
+        android:elevation="0dp"
+        android:foreground="@drawable/item_ripple"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/notes_context"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_weight="1"
-        android:maxLines="10"
-        android:textColor="#000000" />
+        <TextView
+            android:id="@+id/notes_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/notes_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_weight="2"
-        android:textColor="#000000"
-        android:textSize="13sp"/>
+        <TextView
+            android:id="@+id/notes_context"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:maxLines="10"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/notes_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_weight="2"
+            android:textColor="#000000"
+            android:textSize="13sp" />
 
 
-</LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

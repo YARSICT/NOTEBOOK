@@ -16,19 +16,16 @@
 package com.aueui.note;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class About extends BaseActivity {
-    android.support.v7.widget.Toolbar about_toolbar;
+    androidx.appcompat.widget.Toolbar about_toolbar;
 
     private TextView  tv_update, tv_officalWebsite, tv_openSource, tv_originalSource;
 

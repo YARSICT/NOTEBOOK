@@ -1,7 +1,7 @@
 package com.aueui.note.activities;
 
 import android.app.ActivityManager;
-import android.arch.lifecycle.Lifecycle;
+import androidx.lifecycle.Lifecycle;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
