@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 Copyright 2018 YARSICT
 
         Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,14 +26,43 @@ Copyright 2018 YARSICT
         android:elevation="0dp"
         app:elevation="0dp">
 
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/about_toolbar"
-            android:theme="@style/pure_white"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center"
             android:background="?attr/toolbar_color"
             android:elevation="0dp"
-            app:popupTheme="@style/pure_white" />
+            android:theme="@style/pure_white"
+            app:popupTheme="@style/pure_white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingStart="50dp"
+                    android:text="@string/app_name"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:layout_weight="6"
+                    android:background="@drawable/menu" />
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -47,5 +75,14 @@ Copyright 2018 YARSICT
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/add" />
+
+    <Button
+        android:id="@+id/logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/l_logo"
+        android:gravity="bottom|center"
+        android:textSize="8sp" />
 
 </android.support.design.widget.CoordinatorLayout>

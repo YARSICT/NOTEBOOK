@@ -16,11 +16,15 @@
 package com.aueui.note;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -43,10 +47,13 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aueui.note.activities.FloatMenuActivity;
+import com.aueui.note.utils.MenuReceiver;
 import com.aueui.note.write.notes;
 
 import org.litepal.LitePal;
@@ -64,6 +71,8 @@ public class MainActivity extends BaseActivity
     private RecyclerView rv;
     private NotesAdapter adapter;
     private Toolbar toolbar;
+    private Button btn_menu;
+    BroadcastReceiver br;
 
 
     public class Notes {
@@ -228,7 +237,9 @@ public class MainActivity extends BaseActivity
         super.onSaveInstanceState(outState);
         outState.putInt("CurrentTheme", CurrentTheme);
     }
+    public MainActivity(){
 
+    }
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -385,16 +396,33 @@ public class MainActivity extends BaseActivity
             Notes note = new Notes(notes.getNotes_title(), notes.getNotes_context(), notes.getDate());
             Noteslist.add(note);
         }
+        if(notesList.size()!=0){
+            Button logo=findViewById(R.id.logo);
+            logo.setVisibility(View.GONE);
+        }
     }
 
     private void initView() {
         constraintLayout = findViewById(R.id.main_constrain);
         toolbar = findViewById(R.id.about_toolbar);
         rv = findViewById(R.id.notes_items);
+        btn_menu=findViewById(R.id.btn_menu);
+        btn_menu.setOnClickListener((view)->startActivity(new Intent(MainActivity.this, FloatMenuActivity.class).putExtra("STAT",1)));
         setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(getResources().getColor(toolbarcolor));
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade);
         constraintLayout.startAnimation(animation);
+        br=new MenuReceiver();
+        IntentFilter filter=new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        filter.addAction("switchNightMode");
+        this.registerReceiver(br,filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.unregisterReceiver(br);
+        Log.d(TAG, "onDestroy: ");
     }
 
     @Override
@@ -470,6 +498,19 @@ public class MainActivity extends BaseActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart: ");
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
     }
 }
 

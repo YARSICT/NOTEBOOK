@@ -21,5 +21,8 @@
     <string name="about_bq">©2018–2020 aueUI All rights reserved</string>
     <string name="share">分享</string>
     <string name="set_theme_sum">更改记事本的主题风格</string>
+    <string name="recycle_bin">回收站</string>
+    <string name="cloud_sync">云同步</string>
+    <string name="no_note">没有记事</string>
 
 </resources>

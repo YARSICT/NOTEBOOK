@@ -49,25 +49,19 @@ public class Reader extends BaseActivity {
         setContentView(R.layout.read);
         initIntent();
         initView();
-        read_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(Reader.this, Editor.class);
-                intent1.putExtra("title", title);
-                intent1.putExtra("context", context);
-                SharedPreferences.Editor editor = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
-                editor.putString("where", "read");
-                editor.apply();
-                startActivity(intent1);
-                finish();
-            }
+        read_edit.setOnClickListener(v -> {
+            Intent intent1 = new Intent(Reader.this, Editor.class);
+            intent1.putExtra("title", title);
+            intent1.putExtra("context", context);
+            SharedPreferences.Editor editor = getSharedPreferences(SP_NAME, MODE_PRIVATE).edit();
+            editor.putString("where", "read");
+            editor.apply();
+            startActivity(intent1);
+            finish();
         });
-        read_share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shareText("分享", title, context);
-                loadCircularRevealAnim(500, linearLayout);
-            }
+        read_share.setOnClickListener(v -> {
+            shareText("分享", title, context);
+            loadCircularRevealAnim(500, linearLayout);
         });
 
     }
@@ -104,31 +98,22 @@ public class Reader extends BaseActivity {
         read_context.setTextSize(Integer.parseInt(isTextSize()));
         read_context.setTextColor(Color.parseColor(isTextColor()));
         Button Button1 = findViewById(R.id.delete);
-        Button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Reader.this);
-                builder.setTitle("删除");
-                builder.setMessage("确认删除本条记事吗？");
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        LitePal.deleteAll(notes.class, "notes_context = ? and notes_title = ?", read_context.getText().toString(), read_title.getText().toString());
-                        Intent intent = new Intent(Reader.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(R.anim.fade, R.anim.fade_exit);
-                    }
-                });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+        Button1.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Reader.this);
+            builder.setTitle("删除");
+            builder.setMessage("确认删除本条记事吗？");
+            builder.setPositiveButton("确定", (dialog, which) -> {
+                LitePal.deleteAll(notes.class, "notes_context = ? and notes_title = ?", read_context.getText().toString(), read_title.getText().toString());
+                Intent intent = new Intent(Reader.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.fade, R.anim.fade_exit);
+            });
+            builder.setNegativeButton("取消", (dialog, which) -> {
 
-                    }
-                });
-                builder.show();
+            });
+            builder.show();
 
-            }
         });
     }
 
